@@ -1,716 +1,1832 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050b12">
-<title>ALIXEN | Cybersecurity Portfolio</title>
-<meta name="description" content="ALIXEN - Cybersecurity portfolio, projects, security research and technical skills.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050b12">
+  <meta name="description" content="ALIXEN — Cybersecurity portfolio, penetration testing, OSINT and security tools.">
+  <title>ALIXEN | Cybersecurity Portfolio</title>
 
-<script src="https://unpkg.com/globe.gl"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/globe.gl"></script>
 
-<style>
-:root {
-  --bg:#050b12;
-  --panel:#0b1724;
-  --cyan:#00eaff;
-  --blue:#087cff;
-  --text:#e8faff;
-  --muted:#91a9b8;
-  --border:rgba(0,234,255,.22);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:Arial,Helvetica,sans-serif;
-  line-height:1.6;
-  overflow-x:hidden;
-}
-a{color:var(--cyan);text-decoration:none}
-a:hover{color:white}
-button,input{
-  font:inherit;
-}
-header{
-  position:sticky;top:0;z-index:100;
-  background:rgba(5,11,18,.94);
-  border-bottom:1px solid var(--border);
-  backdrop-filter:blur(12px);
-}
-nav{
-  max-width:1200px;margin:auto;padding:15px 5%;
-  display:flex;justify-content:space-between;align-items:center;
-  gap:15px;flex-wrap:wrap;
-}
-.logo{
-  color:var(--cyan);font-size:25px;font-weight:900;
-  letter-spacing:4px;text-shadow:0 0 15px var(--cyan);
-}
-.navlinks{display:flex;gap:17px;flex-wrap:wrap}
-.navlinks a{font-size:13px;color:var(--text)}
-.navlinks a:hover{color:var(--cyan)}
-section{
-  max-width:1200px;margin:auto;padding:85px 5%;
-}
-.hero{
-  min-height:650px;display:grid;
-  grid-template-columns:1.1fr .9fr;
-  align-items:center;gap:25px;
-}
-.eyebrow{
-  color:var(--cyan);letter-spacing:4px;
-  font-size:12px;font-weight:bold;
-}
-h1{
-  font-size:clamp(40px,7vw,76px);
-  line-height:1.05;margin:18px 0;
-}
-h1 span,.glow{color:var(--cyan);text-shadow:0 0 20px rgba(0,234,255,.4)}
-.hero p{color:var(--muted);max-width:600px}
-.typing{
-  color:var(--cyan);font-size:20px;
-  min-height:35px;margin:15px 0;
-}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
-.btn{
-  display:inline-block;padding:11px 18px;
-  border:1px solid var(--cyan);border-radius:5px;
-  color:var(--cyan);background:transparent;
-  cursor:pointer;font-weight:bold;
-}
-.btn.primary{background:var(--cyan);color:#001018}
-.btn:hover{box-shadow:0 0 18px rgba(0,234,255,.35)}
-#globeViz{width:100%;height:430px}
-.section-title{
-  font-size:32px;color:var(--cyan);
-  margin-bottom:12px;
-}
-.section-intro{color:var(--muted);margin-bottom:30px}
-.grid{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:18px;
-}
-.card{
-  background:linear-gradient(145deg,#0d1c2a,#07111b);
-  border:1px solid var(--border);
-  border-radius:10px;padding:22px;
-  box-shadow:0 8px 25px rgba(0,0,0,.18);
-}
-.card h3{color:var(--cyan);margin-bottom:10px}
-.card p,.card li{color:var(--muted);font-size:14px}
-.card ul{padding-left:20px}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
-.tag{
-  border:1px solid var(--border);padding:5px 10px;
-  border-radius:20px;color:var(--cyan);font-size:12px;
-}
-.tool-result{
-  margin-top:13px;padding:12px;border-radius:6px;
-  background:#030a11;color:var(--muted);
-  overflow-wrap:anywhere;font-size:13px;
-  white-space:pre-wrap;
-}
-.field{
-  width:100%;padding:12px;margin:8px 0;
-  border:1px solid var(--border);border-radius:5px;
-  background:#030a11;color:white;outline:none;
-}
-.field:focus{border-color:var(--cyan)}
-.status{color:var(--cyan);font-size:13px}
-.meter{
-  height:9px;background:#1b2935;border-radius:20px;
-  overflow:hidden;margin:12px 0;
-}
-.meter-fill{
-  height:100%;width:0;background:var(--cyan);
-  transition:width .3s;
-}
-.certificates img{
-  width:100%;height:190px;object-fit:contain;
-  background:#02070c;border:1px solid var(--border);
-  border-radius:5px;margin-bottom:10px;
-}
-footer{
-  text-align:center;padding:30px 5%;
-  color:var(--muted);border-top:1px solid var(--border);
-}
-#voiceStatus{font-size:13px;color:var(--cyan);margin-top:10px}
-.small-note{font-size:12px;color:var(--muted);margin-top:10px}
-@media(max-width:800px){
-  .hero{grid-template-columns:1fr;text-align:center;padding-top:55px}
-  .hero p{margin:auto}
-  .actions{justify-content:center}
-  #globeViz{height:330px}
-  .grid{grid-template-columns:1fr}
-  nav{justify-content:center}
-  .navlinks{justify-content:center}
-  section{padding:65px 6%}
-}
-</style>
+  <style>
+    :root {
+      --bg: #050b12;
+      --panel: rgba(8, 20, 31, .88);
+      --cyan: #00eaff;
+      --blue: #087cff;
+      --green: #00ff9d;
+      --red: #ff4568;
+      --yellow: #ffd166;
+      --text: #e8faff;
+      --muted: #8ba8b7;
+      --border: rgba(0, 234, 255, .22);
+      --glow: 0 0 22px rgba(0, 234, 255, .14);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
+
+    body {
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(0, 100, 160, .16), transparent 45%),
+        var(--bg);
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 18px;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: .16;
+      background-image:
+        linear-gradient(rgba(0,234,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,234,255,.045) 1px, transparent 1px);
+      background-size: 45px 45px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    .container { width: min(1150px, 91%); margin: auto; }
+    .section { padding: 90px 0; }
+    .accent { color: var(--cyan); }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--cyan);
+      font-size: clamp(22px, 4vw, 32px);
+      text-align: center;
+      margin-bottom: 12px;
+      text-shadow: 0 0 15px rgba(0,234,255,.3);
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 42px;
+    }
+
+    .top-line {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      box-shadow: 0 0 15px var(--cyan);
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(3, 10, 17, .93);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--cyan);
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-shadow: 0 0 15px rgba(0,234,255,.5);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 15px;
+      color: #c2dce6;
+      transition: .2s;
+    }
+
+    .nav-links a:hover { color: var(--cyan); }
+
+    .menu-btn {
+      display: none;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--cyan);
+      padding: 7px 12px;
+      border-radius: 5px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 680px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 25px;
+      padding: 55px 0 70px;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(38px, 6vw, 65px);
+      line-height: 1.13;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 span {
+      color: var(--cyan);
+      text-shadow: 0 0 22px rgba(0,234,255,.45);
+    }
+
+    .hero-description {
+      color: #a8c3d0;
+      max-width: 530px;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .typing {
+      color: var(--green);
+      min-height: 30px;
+      font-size: 21px;
+      margin-bottom: 25px;
+    }
+
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 20px;
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      background: rgba(0,234,255,.07);
+      border-radius: 4px;
+      transition: .25s;
+      font-weight: 700;
+    }
+
+    .btn:hover {
+      background: var(--cyan);
+      color: #001018;
+      box-shadow: 0 0 22px rgba(0,234,255,.35);
+    }
+
+    .btn-filled { background: var(--cyan); color: #001018; }
+
+    .globe-wrap {
+      position: relative;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #globeViz { width: 100%; height: 440px; cursor: grab; }
+
+    .globe-label {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--cyan);
+      opacity: .8;
+    }
+
+    .live-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--green);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      50% { opacity: .35; box-shadow: 0 0 3px var(--green); }
+    }
+
+    /* STATUS STRIP */
+
+    .status-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 0 auto 25px;
+    }
+
+    .status-box {
+      padding: 17px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      text-align: center;
+      border-radius: 5px;
+    }
+
+    .status-box small {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .status-box strong {
+      color: var(--cyan);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 13px;
+    }
+
+    /* PANELS */
+
+    .panel-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .panel {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: 7px;
+      padding: 23px;
+      box-shadow: var(--glow);
+      min-width: 0;
+    }
+
+    .panel.full { grid-column: 1 / -1; }
+
+    .panel-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 15px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .panel-heading h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      color: var(--cyan);
+      letter-spacing: 1px;
+    }
+
+    .panel-tag {
+      color: var(--green);
+      font-size: 11px;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .data-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .data-row:last-child { border-bottom: 0; }
+    .data-row span:first-child { color: var(--muted); }
+
+    .data-row strong {
+      text-align: right;
+      color: var(--cyan);
+      overflow-wrap: anywhere;
+    }
+
+    .green { color: var(--green) !important; }
+    .red { color: var(--red) !important; }
+    .yellow { color: var(--yellow) !important; }
+
+    .tool-input {
+      width: 100%;
+      padding: 13px;
+      color: var(--text);
+      background: #020910;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      outline: none;
+      margin: 8px 0 12px;
+    }
+
+    .tool-input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 12px rgba(0,234,255,.12);
+    }
+
+    .tool-button {
+      padding: 11px 18px;
+      background: rgba(0,234,255,.12);
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      border-radius: 4px;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .tool-button:hover {
+      background: var(--cyan);
+      color: #001018;
+    }
+
+    .tool-button:disabled { opacity: .5; cursor: wait; }
+
+    .output {
+      background: #02070d;
+      border: 1px solid rgba(0,234,255,.12);
+      border-radius: 4px;
+      padding: 14px;
+      margin-top: 15px;
+      min-height: 65px;
+      color: #b8d6df;
+      font-size: 15px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    .record {
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .record:last-child { border: 0; }
+
+    .record-type {
+      color: var(--green);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+    }
+
+    /* PASSWORD CHECKER */
+
+    .password-wrap {
+      position: relative;
+    }
+
+    .password-wrap input {
+      padding-right: 75px;
+    }
+
+    .show-password {
+      position: absolute;
+      right: 10px;
+      top: 19px;
+      border: 0;
+      background: transparent;
+      color: var(--cyan);
+      font-size: 13px;
+      padding: 4px;
+    }
+
+    .strength-track {
+      height: 9px;
+      width: 100%;
+      background: #172631;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 16px 0 9px;
+    }
+
+    .strength-fill {
+      width: 0%;
+      height: 100%;
+      background: var(--red);
+      transition: width .25s, background .25s;
+      border-radius: 10px;
+    }
+
+    .strength-label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      margin-bottom: 13px;
+    }
+
+    .password-checks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      margin-top: 15px;
+    }
+
+    .password-check {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .password-check.pass { color: var(--green); }
+    .password-check.fail { color: var(--red); }
+
+    /* ABOUT AND SKILLS */
+
+    .about-box {
+      max-width: 850px;
+      margin: auto;
+      text-align: center;
+      color: #abc4cf;
+      line-height: 1.9;
+      font-size: 19px;
+    }
+
+    .skills-grid, .project-grid, .certificate-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 17px;
+    }
+
+    .skill-card, .project-card, .certificate-card {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      padding: 22px;
+      border-radius: 6px;
+      transition: .25s;
+    }
+
+    .skill-card:hover, .project-card:hover, .certificate-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--cyan);
+      box-shadow: var(--glow);
+    }
+
+    .skill-card h3, .project-card h3, .certificate-card h3 {
+      color: var(--cyan);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .skill-card p, .project-card p, .certificate-card p {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .project-card .project-status {
+      display: inline-block;
+      margin-top: 15px;
+      color: var(--green);
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    .certificate-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: contain;
+      background: #020910;
+      margin-bottom: 15px;
+      border: 1px solid var(--border);
+    }
+
+    .topic-list {
+      max-width: 850px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .topic {
+      padding: 16px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      color: #c3dce5;
+    }
+
+    .topic span { color: var(--green); margin-right: 9px; }
+
+    .report-box {
+      max-width: 800px;
+      margin: auto;
+      padding: 25px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+
+    .report-box p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+
+    .contact-box {
+      text-align: center;
+      padding: 35px 20px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: 7px;
+    }
+
+    .contact-box p { color: var(--muted); margin: 15px 0 25px; }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    footer {
+      padding: 25px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 850px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .hero-description { margin-left: auto; margin-right: auto; }
+      .hero-buttons { justify-content: center; }
+      .globe-wrap { min-height: 340px; }
+      #globeViz { height: 350px; }
+      .skills-grid, .project-grid, .certificate-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 650px) {
+      .menu-btn { display: block; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #050d15;
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-links.open { display: flex; }
+      .status-strip { grid-template-columns: repeat(2, 1fr); }
+      .panel-grid { grid-template-columns: 1fr; }
+      .panel.full { grid-column: auto; }
+      .skills-grid, .project-grid, .certificate-grid, .topic-list {
+        grid-template-columns: 1fr;
+      }
+      .section { padding: 65px 0; }
+      .hero { padding-top: 45px; }
+      .hero h1 { font-size: 39px; }
+      .password-checks { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="top-line"></div>
 
-<header>
-<nav>
-  <div class="logo">ALIXEN</div>
-  <div class="navlinks">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#tools">Tools</a>
-    <a href="#projects">Projects</a>
-    <a href="#certificates">Certificates</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
-</header>
+  <nav>
+    <div class="container nav-inner">
+      <a href="#home" class="logo">ALIXEN<span>.</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">☰</button>
 
-<main>
-<section class="hero" id="home">
-  <div>
-    <div class="eyebrow">CYBERSECURITY • TECHNOLOGY • RESEARCH</div>
-    <h1>WELCOME TO<br><span>ALIXEN</span></h1>
-    <div class="typing" id="typing"></div>
-    <p>
-      Exploring cybersecurity, ethical hacking, digital defence,
-      network security and the technologies shaping a safer digital world.
-    </p>
-    <div class="actions">
-      <a class="btn primary" href="#about">Explore Portfolio</a>
-      <a class="btn" href="#contact">Contact Me</a>
-    </div>
-    <div class="actions">
-      <button class="btn primary" id="voiceWelcome" type="button">
-        🔊 Enable Voice Welcome
-      </button>
-      <button class="btn" id="stopVoice" type="button">
-        ■ Stop Voice
-      </button>
-    </div>
-    <div id="voiceStatus" aria-live="polite">
-      Voice welcome is ready. Press Enable Voice to hear the introduction.
-    </div>
-  </div>
-  <div id="globeViz" aria-label="Animated digital globe"></div>
-</section>
-
-<section id="about">
-  <h2 class="section-title">About ALIXEN</h2>
-  <p class="section-intro">
-    A growing cybersecurity portfolio focused on learning, practical
-    projects, responsible research and digital protection.
-  </p>
-  <div class="grid">
-    <div class="card">
-      <h3>Who I Am</h3>
-      <p>
-        I am ADEGOKE AL-HASSAN ADETOLA, an aspiring cybersecurity
-        enthusiast interested in understanding how digital systems
-        work and how they can be protected.
-      </p>
-    </div>
-    <div class="card">
-      <h3>My Mission</h3>
-      <p>
-        To build practical technical knowledge, develop responsible
-        security skills and contribute to a safer digital environment.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section id="skills">
-  <h2 class="section-title">Cybersecurity Skills</h2>
-  <p class="section-intro">Areas of learning and technical interest.</p>
-  <div class="grid">
-    <div class="card">
-      <h3>Security Fundamentals</h3>
-      <ul>
-        <li>Cybersecurity principles</li>
-        <li>Threat awareness</li>
-        <li>Authentication and access control</li>
-        <li>Security best practices</li>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#live-tools">Live Tools</a></li>
+        <li><a href="#pentesting">Pentesting</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
-    <div class="card">
-      <h3>Technical Areas</h3>
-      <ul>
-        <li>Networking fundamentals</li>
-        <li>Linux fundamentals</li>
-        <li>Web security concepts</li>
-        <li>DNS and domain research</li>
-      </ul>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <section class="container hero" id="home">
+      <div>
+        <div class="eyebrow">CYBERSECURITY • ETHICAL HACKING • OSINT</div>
+        <h1>HELLO, I'M<br><span>ADEGOKE</span></h1>
+
+        <div class="typing" id="typingText">Cybersecurity Learner</div>
+
+        <p class="hero-description">
+          Welcome to ALIXEN — my cybersecurity space. I explore ethical
+          hacking, penetration testing, digital investigations, and
+          defensive security through practical learning and authorised labs.
+        </p>
+
+        <div class="live-indicator">
+          <span class="live-dot"></span>
+          SYSTEM INTERFACE ACTIVE
+        </div>
+
+        <br><br>
+
+        <div class="hero-buttons">
+          <a href="#live-tools" class="btn btn-filled">Explore Live Tools</a>
+          <a href="#projects" class="btn">View Projects</a>
+        </div>
+      </div>
+
+      <div class="globe-wrap">
+        <div id="globeViz"></div>
+        <div class="globe-label">ALIXEN GLOBAL SECURITY VISUALIZATION</div>
+      </div>
+    </section>
+
+    <!-- STATUS -->
+    <section class="container">
+      <div class="status-strip">
+        <div class="status-box">
+          <small>CONNECTION</small>
+          <strong id="topConnection">CHECKING...</strong>
+        </div>
+        <div class="status-box">
+          <small>LOCAL TIME</small>
+          <strong id="topClock">--:--:--</strong>
+        </div>
+        <div class="status-box">
+          <small>TIME ZONE</small>
+          <strong id="topTimezone">LOADING</strong>
+        </div>
+        <div class="status-box">
+          <small>INTERFACE</small>
+          <strong class="green">ONLINE</strong>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- VISITOR DEVICE + ENGLISH VOICE -->
+    <section class="container" id="visitor-experience" style="padding-top: 12px;">
+      <div class="panel-grid">
+        <div class="panel reveal">
+          <div class="panel-heading">
+            <h3>05 / VISITOR DEVICE INFO</h3>
+            <span class="panel-tag">BROWSER DETAILS</span>
+          </div>
+
+          <div class="data-row">
+            <span>Device type</span>
+            <strong id="visitorDeviceType">Detecting...</strong>
+          </div>
+          <div class="data-row">
+            <span>Operating system</span>
+            <strong id="visitorOS">Detecting...</strong>
+          </div>
+          <div class="data-row">
+            <span>Browser</span>
+            <strong id="visitorBrowser">Detecting...</strong>
+          </div>
+          <div class="data-row">
+            <span>Screen size</span>
+            <strong id="visitorScreen">Detecting...</strong>
+          </div>
+          <div class="data-row">
+            <span>Touch support</span>
+            <strong id="visitorTouch">Detecting...</strong>
+          </div>
+          <div class="data-row">
+            <span>Time zone</span>
+            <strong id="visitorTimezone">Detecting...</strong>
+          </div>
+
+          <p class="hint">
+            This shows only details the visitor's browser makes available.
+            It cannot reliably read a private device name, exact model,
+            personal identity, or physical location.
+          </p>
+        </div>
+
+        <div class="panel reveal">
+          <div class="panel-heading">
+            <h3>06 / ENGLISH VOICE WELCOME</h3>
+            <span class="panel-tag">VOICE GREETING</span>
+          </div>
+
+          <p class="hint" style="margin-top:0; margin-bottom:14px;">
+            Play the ALIXEN welcome message in English using your browser speech voice.
+          </p>
+
+          <div class="output" id="yorubaVoiceText">
+            Welcome to ALIXEN. My name is Adegoke Al-Hassan Adetola.
+            Thank you for visiting this portfolio.
+          </div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+            <button class="tool-button" id="englishPlay" type="button">
+              ▶ PLAY ENGLISH WELCOME
+            </button>
+            <button class="tool-button" id="englishStop" type="button">
+              ■ STOP VOICE
+            </button>
+          </div>
+
+          <p class="hint" id="englishVoiceStatus" role="status" aria-live="polite">
+            Ready. Press Play English Welcome to hear the narration.
+          </p>
+          <p class="hint">
+            Voice playback starts only after the visitor presses Play.
+            The browser uses an available English speech voice when possible.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section-title">ABOUT ALIXEN</h2>
+        <p class="section-subtitle">The person behind the terminal</p>
+
+        <div class="about-box reveal">
+          I'm <strong class="accent">ADEGOKE AL-HASSAN ADETOLA</strong>,
+          also known as <strong class="accent">ALIXEN</strong>.
+          I'm building my knowledge in cybersecurity through research,
+          practical exercises, and authorised testing environments.
+
+          <br><br>
+
+          My interests include penetration testing, OSINT, web security,
+          network fundamentals, vulnerability awareness, and digital
+          defence. This portfolio documents my learning journey and
+          practical projects.
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <div class="container">
+        <h2 class="section-title">SKILLS & INTERESTS</h2>
+        <p class="section-subtitle">Areas I'm learning and developing</p>
+
+        <div class="skills-grid">
+          <div class="skill-card reveal">
+            <h3>01 / PENETRATION TESTING</h3>
+            <p>Learning how authorised security assessments identify and document weaknesses.</p>
+          </div>
+          <div class="skill-card reveal">
+            <h3>02 / OSINT</h3>
+            <p>Researching publicly available information and understanding digital footprints.</p>
+          </div>
+          <div class="skill-card reveal">
+            <h3>03 / NETWORK SECURITY</h3>
+            <p>Studying network concepts, protocols, traffic, and defensive monitoring.</p>
+          </div>
+          <div class="skill-card reveal">
+            <h3>04 / WEB SECURITY</h3>
+            <p>Understanding HTTPS, HTTP headers, authentication, and common web risks.</p>
+          </div>
+          <div class="skill-card reveal">
+            <h3>05 / LINUX</h3>
+            <p>Building command-line confidence and learning system administration fundamentals.</p>
+          </div>
+          <div class="skill-card reveal">
+            <h3>06 / SECURITY REPORTING</h3>
+            <p>Practising clear documentation, evidence collection, and responsible disclosure.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE TOOLS -->
+    <section class="section" id="live-tools">
+      <div class="container">
+        <h2 class="section-title">LIVE CYBER LAB</h2>
+        <p class="section-subtitle">Four interactive browser-based security tools</p>
+
+        <div class="panel-grid">
+
+          <!-- NETWORK MONITOR -->
+          <div class="panel reveal">
+            <div class="panel-heading">
+              <h3>01 / NETWORK MONITOR</h3>
+              <span class="panel-tag">LIVE</span>
+            </div>
+
+            <div class="data-row">
+              <span>Browser connection</span>
+              <strong id="networkStatus">Checking...</strong>
+            </div>
+            <div class="data-row">
+              <span>Connection type</span>
+              <strong id="networkType">Not available</strong>
+            </div>
+            <div class="data-row">
+              <span>Estimated downlink</span>
+              <strong id="networkDownlink">Not available</strong>
+            </div>
+            <div class="data-row">
+              <span>Estimated latency</span>
+              <strong id="networkRtt">Not available</strong>
+            </div>
+            <div class="data-row">
+              <span>Data saver</span>
+              <strong id="networkSaver">Not available</strong>
+            </div>
+            <div class="data-row">
+              <span>Browser language</span>
+              <strong id="browserLanguage">Loading...</strong>
+            </div>
+            <div class="data-row">
+              <span>Screen resolution</span>
+              <strong id="screenResolution">Loading...</strong>
+            </div>
+
+            <p class="hint">
+              Reads connection information exposed by your browser. It does not
+              discover devices on your Wi-Fi or reveal your IP address.
+            </p>
+            <button class="tool-button" id="refreshNetwork">Refresh Monitor</button>
+          </div>
+
+          <!-- OSINT LOOKUP -->
+          <div class="panel reveal">
+            <div class="panel-heading">
+              <h3>02 / OSINT DOMAIN LOOKUP</h3>
+              <span class="panel-tag">PUBLIC DNS</span>
+            </div>
+
+            <label for="domainInput">Domain you own or are authorised to research</label>
+            <input class="tool-input" id="domainInput" type="text"
+                   placeholder="example.com" autocomplete="off">
+
+            <button class="tool-button" id="lookupBtn">Run DNS Lookup</button>
+
+            <p class="hint">
+              Retrieves public DNS records. Use a domain you own or have permission to assess.
+            </p>
+
+            <div class="output" id="osintOutput" aria-live="polite">
+              Waiting for a domain...
+            </div>
+          </div>
+
+          <!-- PASSWORD CHECKER -->
+          <div class="panel reveal">
+            <div class="panel-heading">
+              <h3>03 / PASSWORD CHECKER</h3>
+              <span class="panel-tag">LOCAL ANALYSIS</span>
+            </div>
+
+            <label for="passwordInput">Enter a sample password to test</label>
+
+            <div class="password-wrap">
+              <input
+                class="tool-input"
+                id="passwordInput"
+                type="password"
+                placeholder="Type a made-up test password"
+                autocomplete="off"
+                spellcheck="false"
+              >
+              <button class="show-password" id="togglePassword" type="button">
+                SHOW
+              </button>
+            </div>
+
+            <div class="strength-track">
+              <div class="strength-fill" id="strengthFill"></div>
+            </div>
+
+            <div class="strength-label" id="strengthLabel">
+              WAITING FOR INPUT
+            </div>
+
+            <div class="data-row">
+              <span>Password length</span>
+              <strong id="passwordLength">0 characters</strong>
+            </div>
+
+            <div class="data-row">
+              <span>Estimated score</span>
+              <strong id="passwordScore">0 / 100</strong>
+            </div>
+
+            <div class="password-checks" id="passwordChecks">
+              <div class="password-check fail" id="checkLength">○ 12+ characters</div>
+              <div class="password-check fail" id="checkUpper">○ Uppercase letter</div>
+              <div class="password-check fail" id="checkLower">○ Lowercase letter</div>
+              <div class="password-check fail" id="checkNumber">○ Number</div>
+              <div class="password-check fail" id="checkSymbol">○ Special character</div>
+              <div class="password-check fail" id="checkVariety">○ Character variety</div>
+            </div>
+
+            <div class="output" id="passwordAdvice" aria-live="polite">
+              Your password analysis will appear here as you type.
+            </div>
+
+            <p class="hint">
+              Privacy: this checker analyses the text locally in your browser.
+              It does not upload or save it. Do not enter a real account password.
+              This is a basic strength estimate, not a breach-database check.
+            </p>
+
+            <button class="tool-button" id="clearPassword" type="button">
+              Clear Password
+            </button>
+          </div>
+
+          <!-- WEBSITE SECURITY CHECK -->
+          <div class="panel reveal">
+            <div class="panel-heading">
+              <h3>04 / WEBSITE SECURITY CHECK</h3>
+              <span class="panel-tag">CURRENT SITE ONLY</span>
+            </div>
+
+            <p class="hint">
+              Checks the website hosting this portfolio. It looks for selected
+              security headers. Missing headers are hardening opportunities,
+              not automatic proof of a vulnerability.
+            </p>
+
+            <br>
+
+            <div class="data-row">
+              <span>Website being checked</span>
+              <strong id="checkedSite">Loading...</strong>
+            </div>
+
+            <div class="data-row">
+              <span>HTTPS connection</span>
+              <strong id="httpsStatus">Checking...</strong>
+            </div>
+
+            <button class="tool-button" id="securityBtn">Check Website Security</button>
+
+            <div class="output" id="securityOutput" aria-live="polite">
+              Ready to check this website.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PENTESTING -->
+    <section class="section" id="pentesting">
+      <div class="container">
+        <h2 class="section-title">PENETRATION TESTING</h2>
+        <p class="section-subtitle">Topics I'm studying through authorised labs</p>
+
+        <div class="topic-list">
+          <div class="topic"><span>▸</span> Reconnaissance fundamentals</div>
+          <div class="topic"><span>▸</span> Web application security</div>
+          <div class="topic"><span>▸</span> Network security concepts</div>
+          <div class="topic"><span>▸</span> Vulnerability assessment</div>
+          <div class="topic"><span>▸</span> Authentication and access control</div>
+          <div class="topic"><span>▸</span> Security documentation</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div class="container">
+        <h2 class="section-title">PRACTICAL PROJECTS</h2>
+        <p class="section-subtitle">My cybersecurity learning portfolio</p>
+
+        <div class="project-grid">
+          <div class="project-card reveal">
+            <h3>01 / DNS RESEARCH</h3>
+            <p>Using public DNS records to understand domain infrastructure and document findings.</p>
+            <span class="project-status">LEARNING PROJECT</span>
+          </div>
+
+          <div class="project-card reveal">
+            <h3>02 / WEBSITE SECURITY</h3>
+            <p>Reviewing HTTPS and security response headers on a website I control.</p>
+            <span class="project-status">BROWSER-BASED TOOL</span>
+          </div>
+
+          <div class="project-card reveal">
+            <h3>03 / PASSWORD ANALYSIS</h3>
+            <p>Learning how length, character variety, and predictable patterns affect password strength.</p>
+            <span class="project-status">LOCAL PASSWORD CHECKER</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REPORT TEMPLATE -->
+    <section class="section" id="reports">
+      <div class="container">
+        <h2 class="section-title">SECURITY REPORT FORMAT</h2>
+        <p class="section-subtitle">How I organise assessment findings</p>
+
+        <div class="report-box reveal">
+          <p><strong class="accent">01. Finding:</strong> A short title describing the observation.</p>
+          <p><strong class="accent">02. Scope:</strong> The authorised system or application assessed.</p>
+          <p><strong class="accent">03. Evidence:</strong> Relevant screenshots, logs, or safe test results.</p>
+          <p><strong class="accent">04. Risk:</strong> A clear explanation of potential impact.</p>
+          <p><strong class="accent">05. Recommendation:</strong> Practical steps to improve security.</p>
+          <p><strong class="accent">06. Status:</strong> Open, resolved, or awaiting verification.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATES -->
+    <section class="section" id="certificates">
+      <div class="container">
+        <h2 class="section-title">CERTIFICATES & LEARNING</h2>
+        <p class="section-subtitle">Training and learning milestones</p>
+
+        <div class="certificate-grid">
+          <div class="certificate-card reveal">
+            <img src="bcs-ctf-2026.jpg" alt="BCS CTF certificate">
+            <h3>BCS CTF 2026</h3>
+            <p>Certificate achievement</p>
+          </div>
+
+          <div class="certificate-card reveal">
+            <img src="hackviser-core.jpg" alt="Hackviser Core certificate">
+            <h3>HACKVISER CORE</h3>
+            <p>Certificate achievement</p>
+          </div>
+
+          <div class="certificate-card reveal">
+            <img src="10-minute-school.jpg" alt="10 Minute School certificate">
+            <h3>10 MINUTE SCHOOL</h3>
+            <p>Certificate achievement</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container">
+        <h2 class="section-title">CONNECT WITH ALIXEN</h2>
+        <p class="section-subtitle">Let's connect and learn about cybersecurity</p>
+
+        <div class="contact-box">
+          <h2 class="accent">ADEGOKE AL-HASSAN ADETOLA</h2>
+          <p>Cybersecurity learner • Ethical hacking enthusiast</p>
+
+          <div class="contact-links">
+            <a class="btn btn-filled" href="mailto:adetolaadegoke59@gmail.com">Email Me</a>
+            <a class="btn" href="https://github.com/adetolaadegoke"
+               target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+            <a class="btn" href="https://github.com/adetolaadegoke/alixen-cyber-portfolio"
+               target="_blank" rel="noopener noreferrer">Portfolio Repository</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> ALIXEN — ADEGOKE AL-HASSAN ADETOLA</p>
+      <p>Learn ethically. Test with permission. Build securely.</p>
     </div>
-    <div class="card">
-      <h3>Tools and Technologies</h3>
-      <ul>
-        <li>Linux command line</li>
-        <li>Browser developer tools</li>
-        <li>Git and GitHub</li>
-        <li>HTML, CSS and JavaScript</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Professional Approach</h3>
-      <ul>
-        <li>Ethical research</li>
-        <li>Documentation</li>
-        <li>Problem solving</li>
-        <li>Continuous learning</li>
-      </ul>
-    </div>
-  </div>
-</section>
+  </footer>
 
-<section id="tools">
-  <h2 class="section-title">Live Cyber Tools</h2>
-  <p class="section-intro">
-    Browser-based demonstrations. Use domain research only for
-    domains you own or have permission to assess.
-  </p>
+  <script>
+    /* MOBILE NAVIGATION */
 
-  <div class="grid">
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
 
-    <div class="card">
-      <h3>01 — Connection Monitor</h3>
-      <p>Displays connection information exposed by your browser.</p>
-      <div class="tool-result" id="connectionInfo">Loading browser information...</div>
-      <button class="btn" onclick="updateConnection()">Refresh Status</button>
-    </div>
-
-    <div class="card">
-      <h3>02 — Public DNS Lookup</h3>
-      <p>Look up public DNS records for a domain.</p>
-      <input class="field" id="dnsDomain" placeholder="example.com">
-      <button class="btn primary" onclick="lookupDNS()">Lookup DNS</button>
-      <div class="tool-result" id="dnsResult">Results will appear here.</div>
-    </div>
-
-    <div class="card">
-      <h3>03 — Website Security Headers</h3>
-      <p>Check selected response headers on this portfolio's own origin.</p>
-      <button class="btn primary" onclick="checkHeaders()">Check Current Website</button>
-      <div class="tool-result" id="headerResult">Ready to check.</div>
-    </div>
-
-    <div class="card">
-      <h3>04 — Password Strength Demo</h3>
-      <p>
-        Test a made-up sample password. Do not enter a real account password.
-        This is a basic local estimate, not a breach check.
-      </p>
-      <input class="field" id="passwordInput" type="password" placeholder="Enter a sample password">
-      <div class="meter"><div class="meter-fill" id="passwordMeter"></div></div>
-      <div class="status" id="passwordResult">Waiting for input.</div>
-    </div>
-
-  </div>
-</section>
-
-<section id="device">
-  <h2 class="section-title">Visitor Device Information</h2>
-  <p class="section-intro">
-    A limited display of technical details shared with this browser.
-    It does not identify a visitor personally.
-  </p>
-  <div class="card">
-    <div class="tool-result" id="deviceInfo">Reading available browser details...</div>
-    <p class="small-note">
-      Exact device names, private identifiers and hardware model details
-      are not generally available to ordinary websites.
-    </p>
-  </div>
-</section>
-
-<section id="projects">
-  <h2 class="section-title">Projects and Research</h2>
-  <p class="section-intro">Practical learning and portfolio work.</p>
-  <div class="grid">
-    <div class="card">
-      <h3>ALIXEN Cyber Portfolio</h3>
-      <p>
-        A personal cybersecurity portfolio featuring interactive
-        browser-based demonstrations and technical information.
-      </p>
-      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
-    </div>
-    <div class="card">
-      <h3>DNS Research Demonstration</h3>
-      <p>
-        A learning project exploring public DNS records and
-        domain-name infrastructure.
-      </p>
-      <div class="tags"><span class="tag">DNS</span><span class="tag">OSINT</span></div>
-    </div>
-    <div class="card">
-      <h3>Web Security Header Review</h3>
-      <p>
-        A browser-based demonstration of selected HTTP security
-        headers and their role in website protection.
-      </p>
-      <div class="tags"><span class="tag">Web Security</span><span class="tag">HTTP</span></div>
-    </div>
-    <div class="card">
-      <h3>Cybersecurity Learning Notes</h3>
-      <p>
-        Documentation of cybersecurity fundamentals, networking,
-        responsible testing and defensive security concepts.
-      </p>
-      <div class="tags"><span class="tag">Research</span><span class="tag">Documentation</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="report">
-  <h2 class="section-title">Security Report Template</h2>
-  <p class="section-intro">A simple structure for documenting authorised security reviews.</p>
-  <div class="card">
-    <h3>Sample Report Structure</h3>
-    <ul>
-      <li>Project name and assessment date</li>
-      <li>Scope and written authorisation</li>
-      <li>Summary of observations</li>
-      <li>Potential impact</li>
-      <li>Recommended defensive improvements</li>
-      <li>Evidence and references</li>
-      <li>Conclusion</li>
-    </ul>
-  </div>
-</section>
-
-<section id="certificates">
-  <h2 class="section-title">Certificates and Achievements</h2>
-  <p class="section-intro">Certificates stored in the root of this GitHub repository.</p>
-  <div class="grid certificates">
-    <div class="card">
-      <img src="bcs-ctf-2026.jpg" alt="BCS CTF 2026 certificate">
-      <h3>BCS CTF 2026</h3>
-      <p>Cybersecurity learning achievement.</p>
-    </div>
-    <div class="card">
-      <img src="hackviser-core.jpg" alt="Hackviser Core certificate">
-      <h3>Hackviser Core</h3>
-      <p>Cybersecurity training certificate.</p>
-    </div>
-    <div class="card">
-      <img src="10-minute-school.jpg" alt="10 Minute School certificate">
-      <h3>10 Minute School</h3>
-      <p>Learning and development certificate.</p>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <h2 class="section-title">Contact</h2>
-  <p class="section-intro">Connect with ALIXEN.</p>
-  <div class="card">
-    <h3>Let's Connect</h3>
-    <p>Email: <a href="mailto:adetolaadegoke59@gmail.com">adetolaadegoke59@gmail.com</a></p>
-    <p>GitHub:
-      <a href="https://github.com/adetolaadegoke" target="_blank" rel="noopener noreferrer">
-        github.com/adetolaadegoke
-      </a>
-    </p>
-    <p>Portfolio:
-      <a href="https://adetolaadegoke.github.io/alixen-cyber-portfolio/" target="_blank" rel="noopener noreferrer">
-        ALIXEN Cyber Portfolio
-      </a>
-    </p>
-  </div>
-</section>
-</main>
-
-<footer>
-  <p>© <span id="year"></span> ALIXEN — Learn. Secure. Innovate.</p>
-  <p>Cybersecurity education and responsible research.</p>
-</footer>
-
-<script>
-// Typing introduction
-const phrases = [
-  "Cybersecurity Enthusiast",
-  "Ethical Hacking Learner",
-  "Digital Defence Explorer",
-  "Future Security Professional"
-];
-let phraseIndex = 0, charIndex = 0, deleting = false;
-const typingElement = document.getElementById("typing");
-
-function typeText(){
-  const phrase = phrases[phraseIndex];
-  typingElement.textContent = phrase.substring(0,charIndex);
-
-  if(!deleting){
-    charIndex++;
-    if(charIndex > phrase.length){
-      deleting = true;
-      setTimeout(typeText,1100);
-      return;
-    }
-  }else{
-    charIndex--;
-    if(charIndex < 0){
-      deleting = false;
-      phraseIndex = (phraseIndex + 1) % phrases.length;
-      charIndex = 0;
-    }
-  }
-  setTimeout(typeText,deleting ? 45 : 85);
-}
-typeText();
-
-// Animated globe: a visual design, not live attack or threat data
-const globeContainer = document.getElementById("globeViz");
-if(typeof Globe !== "undefined"){
-  const globe = Globe()(globeContainer)
-    .globeImageUrl("//unpkg.com/three-globe/example/img/earth-night.jpg")
-    .backgroundColor("rgba(0,0,0,0)")
-    .showAtmosphere(true)
-    .atmosphereColor("#00dfff")
-    .atmosphereAltitude(0.18)
-    .arcsData([
-      {startLat:20,startLng:-70,endLat:30,endLng:30},
-      {startLat:10,startLng:10,endLat:40,endLng:120},
-      {startLat:-20,startLng:130,endLat:40,endLng:-100},
-      {startLat:50,startLng:-10,endLat:-25,endLng:80}
-    ])
-    .arcColor(() => "#00eaff")
-    .arcStroke(0.5)
-    .arcDashLength(0.35)
-    .arcDashGap(1.5)
-    .arcDashAnimateTime(3000);
-
-  globe.controls().autoRotate = true;
-  globe.controls().autoRotateSpeed = 0.5;
-}
-
-// Voice welcome: starts only after visitor clicks the button
-const voiceButton = document.getElementById("voiceWelcome");
-const stopButton = document.getElementById("stopVoice");
-const voiceStatus = document.getElementById("voiceStatus");
-
-function speakWelcome(){
-  if(!("speechSynthesis" in window)){
-    voiceStatus.textContent = "Voice narration is not supported in this browser.";
-    return;
-  }
-
-  window.speechSynthesis.cancel();
-
-  const welcomeText =
-    "Welcome to ALIXEN, a cybersecurity portfolio. " +
-    "My name is Adegoke Al-Hassan Adetola. " +
-    "Explore my cybersecurity interests, technical skills, projects, " +
-    "learning tools and certificates. " +
-    "This portfolio is dedicated to responsible cybersecurity learning, " +
-    "digital defence and continuous improvement. Thank you for visiting ALIXEN.";
-
-  const speech = new SpeechSynthesisUtterance(welcomeText);
-  speech.lang = "en-US";
-  speech.rate = 0.92;
-  speech.pitch = 1;
-  speech.volume = 1;
-
-  speech.onstart = () => {
-    voiceStatus.textContent = "ALIXEN voice welcome is playing.";
-  };
-  speech.onend = () => {
-    voiceStatus.textContent = "Voice welcome finished.";
-  };
-  speech.onerror = () => {
-    voiceStatus.textContent = "Voice playback could not be completed.";
-  };
-
-  window.speechSynthesis.speak(speech);
-}
-
-voiceButton.addEventListener("click",speakWelcome);
-
-stopButton.addEventListener("click",()=>{
-  if("speechSynthesis" in window){
-    window.speechSynthesis.cancel();
-    voiceStatus.textContent = "Voice welcome stopped.";
-  }
-});
-
-// Browser connection monitor
-function updateConnection(){
-  const info = document.getElementById("connectionInfo");
-  const connection = navigator.connection ||
-                     navigator.mozConnection ||
-                     navigator.webkitConnection;
-
-  const lines = [
-    "Browser online: " + (navigator.onLine ? "Yes" : "No"),
-    "Language: " + (navigator.language || "Not provided"),
-    "Platform: " + (navigator.platform || "Not provided"),
-    "Screen: " + screen.width + " × " + screen.height
-  ];
-
-  if(connection){
-    lines.push("Connection type: " + (connection.type || "Not provided"));
-    lines.push("Effective connection: " + (connection.effectiveType || "Not provided"));
-    lines.push("Estimated downlink: " + (connection.downlink ?? "Not provided") + " Mbps");
-    lines.push("Estimated latency: " + (connection.rtt ?? "Not provided") + " ms");
-  }else{
-    lines.push("Connection details: Not exposed by this browser");
-  }
-
-  info.textContent = lines.join("\n");
-}
-updateConnection();
-window.addEventListener("online",updateConnection);
-window.addEventListener("offline",updateConnection);
-
-// Device details available to the browser
-function showDeviceInfo(){
-  const ua = navigator.userAgent || "";
-  let browser = "Unknown browser";
-
-  if(ua.includes("Edg/")) browser = "Microsoft Edge";
-  else if(ua.includes("Firefox/")) browser = "Mozilla Firefox";
-  else if(ua.includes("Chrome/") && !ua.includes("Edg/")) browser = "Google Chrome";
-  else if(ua.includes("Safari/") && !ua.includes("Chrome/")) browser = "Safari";
-
-  const platform = navigator.userAgentData?.platform ||
-                   navigator.platform || "Not provided";
-  const memory = navigator.deviceMemory
-    ? navigator.deviceMemory + " GB (approximate)"
-    : "Not provided";
-  const cores = navigator.hardwareConcurrency
-    ? navigator.hardwareConcurrency
-    : "Not provided";
-
-  const details = [
-    "Browser: " + browser,
-    "Platform: " + platform,
-    "Screen resolution: " + screen.width + " × " + screen.height,
-    "Available logical CPU cores: " + cores,
-    "Approximate device memory: " + memory,
-    "Touch support: " + (navigator.maxTouchPoints > 0 ? "Available" : "Not reported")
-  ];
-
-  document.getElementById("deviceInfo").textContent = details.join("\n");
-}
-showDeviceInfo();
-
-// Public DNS lookup using Google DNS-over-HTTPS
-async function lookupDNS(){
-  const domain = document.getElementById("dnsDomain").value.trim();
-  const result = document.getElementById("dnsResult");
-
-  if(!domain){
-    result.textContent = "Enter a domain name first.";
-    return;
-  }
-
-  if(!/^(?=.{1,253}$)([a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)(\.([a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?))+$/.test(domain)){
-    result.textContent = "Please enter a valid domain, such as example.com.";
-    return;
-  }
-
-  result.textContent = "Looking up public DNS records...";
-
-  try{
-    const types = ["A","AAAA","MX","NS","TXT"];
-    const output = [];
-
-    for(const type of types){
-      const response = await fetch(
-        "https://dns.google/resolve?name=" +
-        encodeURIComponent(domain) + "&type=" + type,
-        {headers:{"Accept":"application/dns-json"}}
-      );
-
-      if(!response.ok) throw new Error("DNS service returned an error.");
-
-      const data = await response.json();
-      const answers = data.Answer || [];
-      output.push(type + ":\n" +
-        (answers.length
-          ? answers.map(record => record.data).join("\n")
-          : "No records returned"));
-    }
-
-    result.textContent = output.join("\n\n");
-  }catch(error){
-    result.textContent = "Lookup failed: " + error.message;
-  }
-}
-
-// Security headers for this website's own origin only
-async function checkHeaders(){
-  const result = document.getElementById("headerResult");
-  result.textContent = "Checking this website's response headers...";
-
-  try{
-    const response = await fetch(window.location.origin, {
-      method:"GET",
-      cache:"no-store",
-      credentials:"same-origin"
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
     });
 
-    const headers = response.headers;
-    const checks = [
-      ["Content-Security-Policy","content-security-policy"],
-      ["Strict-Transport-Security","strict-transport-security"],
-      ["X-Content-Type-Options","x-content-type-options"],
-      ["Referrer-Policy","referrer-policy"],
-      ["Permissions-Policy","permissions-policy"],
-      ["X-Frame-Options","x-frame-options"]
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => navLinks.classList.remove("open"));
+    });
+
+
+    /* LIVE CLOCK AND NETWORK MONITOR */
+
+    function updateClock() {
+      const now = new Date();
+
+      document.getElementById("topClock").textContent =
+        now.toLocaleTimeString();
+
+      document.getElementById("topTimezone").textContent =
+        Intl.DateTimeFormat().resolvedOptions().timeZone || "Unknown";
+    }
+
+    function updateNetworkMonitor() {
+      const online = navigator.onLine;
+      const connection = navigator.connection ||
+                         navigator.mozConnection ||
+                         navigator.webkitConnection;
+
+      const status = online ? "ONLINE" : "OFFLINE";
+
+      const top = document.getElementById("topConnection");
+      const network = document.getElementById("networkStatus");
+
+      top.textContent = status;
+      network.textContent = status;
+
+      top.className = online ? "green" : "red";
+      network.className = online ? "green" : "red";
+
+      document.getElementById("networkType").textContent =
+        connection?.effectiveType || "Not exposed by browser";
+
+      document.getElementById("networkDownlink").textContent =
+        connection?.downlink != null
+          ? connection.downlink + " Mbps (estimate)"
+          : "Not exposed by browser";
+
+      document.getElementById("networkRtt").textContent =
+        connection?.rtt != null
+          ? connection.rtt + " ms (estimate)"
+          : "Not exposed by browser";
+
+      document.getElementById("networkSaver").textContent =
+        connection?.saveData != null
+          ? (connection.saveData ? "Enabled" : "Disabled")
+          : "Not exposed by browser";
+
+      document.getElementById("browserLanguage").textContent =
+        navigator.language || "Unknown";
+
+      document.getElementById("screenResolution").textContent =
+        screen.width + " × " + screen.height;
+    }
+
+    updateClock();
+    updateNetworkMonitor();
+
+    setInterval(updateClock, 1000);
+    setInterval(updateNetworkMonitor, 5000);
+
+    window.addEventListener("online", updateNetworkMonitor);
+    window.addEventListener("offline", updateNetworkMonitor);
+
+    document.getElementById("refreshNetwork").addEventListener("click", () => {
+      updateNetworkMonitor();
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+
+    /* OSINT: PUBLIC DNS LOOKUP */
+
+    const lookupBtn = document.getElementById("lookupBtn");
+    const osintOutput = document.getElementById("osintOutput");
+
+    function validDomain(domain) {
+      if (!domain || domain.length > 253) return false;
+
+      const clean = domain.trim().replace(/\.$/, "");
+
+      if (clean.includes("://") || clean.includes("/") || clean.includes("@")) {
+        return false;
+      }
+
+      const labels = clean.split(".");
+
+      if (labels.length < 2) return false;
+
+      return labels.every(label =>
+        /^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$/.test(label)
+      );
+    }
+
+    async function getDNS(domain, type) {
+      const url =
+        "https://dns.google/resolve?name=" +
+        encodeURIComponent(domain) +
+        "&type=" + encodeURIComponent(type);
+
+      const response = await fetch(url, {
+        headers: { "Accept": "application/dns-json" }
+      });
+
+      if (!response.ok) {
+        throw new Error("DNS service returned HTTP " + response.status);
+      }
+
+      return response.json();
+    }
+
+    lookupBtn.addEventListener("click", async () => {
+      const domain = document.getElementById("domainInput").value
+        .trim()
+        .toLowerCase()
+        .replace(/\.$/, "");
+
+      if (!validDomain(domain)) {
+        osintOutput.textContent =
+          "Enter a valid domain, for example example.com.";
+        return;
+      }
+
+      lookupBtn.disabled = true;
+      lookupBtn.textContent = "LOOKING UP...";
+      osintOutput.textContent =
+        "Querying public DNS records for " + domain + "...";
+
+      const types = ["A", "AAAA", "MX", "NS", "TXT"];
+
+      try {
+        const results = await Promise.all(
+          types.map(async type => {
+            try {
+              const data = await getDNS(domain, type);
+              return { type, answers: data.Answer || [] };
+            } catch (error) {
+              return { type, answers: [], error: error.message };
+            }
+          })
+        );
+
+        let html = "<strong class='accent'>DNS RESULTS: " +
+          domain + "</strong><br><br>";
+
+        let found = 0;
+
+        results.forEach(result => {
+          html += "<div class='record'>";
+          html += "<span class='record-type'>" + result.type + "</span><br>";
+
+          if (result.answers.length) {
+            result.answers.forEach(answer => {
+              found++;
+              const safeData = String(answer.data)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+
+              html += "<span>" + safeData + "</span><br>";
+            });
+          } else {
+            html += "<span class='hint'>No record returned.</span>";
+          }
+
+          html += "</div>";
+        });
+
+        html += "<br><span class='green'>Lookup complete — " +
+          found + " record(s) returned.</span>";
+
+        osintOutput.innerHTML = html;
+
+      } catch (error) {
+        osintOutput.textContent =
+          "Lookup failed. Check your internet connection and try again. " +
+          error.message;
+      } finally {
+        lookupBtn.disabled = false;
+        lookupBtn.textContent = "Run DNS Lookup";
+      }
+    });
+
+
+    /* PASSWORD STRENGTH CHECKER
+       All analysis stays in this browser.
+       The password is never transmitted or stored.
+    */
+
+    const passwordInput = document.getElementById("passwordInput");
+    const strengthFill = document.getElementById("strengthFill");
+    const strengthLabel = document.getElementById("strengthLabel");
+    const passwordAdvice = document.getElementById("passwordAdvice");
+
+    function setPasswordCheck(id, passed, label) {
+      const element = document.getElementById(id);
+      element.textContent = (passed ? "✓ " : "○ ") + label;
+      element.className = "password-check " + (passed ? "pass" : "fail");
+    }
+
+    function analysePassword() {
+      const password = passwordInput.value;
+
+      const checks = {
+        length: password.length >= 12,
+        upper: /[A-Z]/.test(password),
+        lower: /[a-z]/.test(password),
+        number: /[0-9]/.test(password),
+        symbol: /[^A-Za-z0-9]/.test(password),
+        variety: new Set(password).size >= 8
+      };
+
+      setPasswordCheck("checkLength", checks.length, "12+ characters");
+      setPasswordCheck("checkUpper", checks.upper, "Uppercase letter");
+      setPasswordCheck("checkLower", checks.lower, "Lowercase letter");
+      setPasswordCheck("checkNumber", checks.number, "Number");
+      setPasswordCheck("checkSymbol", checks.symbol, "Special character");
+      setPasswordCheck("checkVariety", checks.variety, "Character variety");
+
+      document.getElementById("passwordLength").textContent =
+        password.length + (password.length === 1 ? " character" : " characters");
+
+      if (!password) {
+        strengthFill.style.width = "0%";
+        strengthLabel.textContent = "WAITING FOR INPUT";
+        strengthLabel.className = "strength-label";
+        document.getElementById("passwordScore").textContent = "0 / 100";
+        passwordAdvice.textContent =
+          "Your password analysis will appear here as you type.";
+        return;
+      }
+
+      let score = 0;
+
+      // Length contributes up to 40 points.
+      score += Math.min(password.length * 3, 40);
+
+      // Character variety contributes up to 40 points.
+      if (checks.upper) score += 10;
+      if (checks.lower) score += 10;
+      if (checks.number) score += 10;
+      if (checks.symbol) score += 10;
+
+      // Variety contributes up to 20 points.
+      score += Math.min(new Set(password).size * 2, 20);
+
+      // Reduce the score for obvious predictable patterns.
+      if (/^(password|qwerty|letmein|welcome|admin|123456)/i.test(password)) {
+        score -= 35;
+      }
+
+      if (/(.)\1{3,}/.test(password)) score -= 10;
+      if (/1234|abcd|qwerty/i.test(password)) score -= 10;
+
+      score = Math.max(0, Math.min(100, score));
+
+      document.getElementById("passwordScore").textContent =
+        score + " / 100";
+
+      strengthFill.style.width = score + "%";
+
+      let label;
+      let color;
+      let advice;
+
+      if (score < 30) {
+        label = "VERY WEAK";
+        color = "#ff4568";
+        advice = "Try a much longer password and avoid common words or predictable sequences.";
+      } else if (score < 50) {
+        label = "WEAK";
+        color = "#ff784f";
+        advice = "Add more length and variety. Avoid repeated characters and obvious patterns.";
+      } else if (score < 70) {
+        label = "FAIR";
+        color = "#ffd166";
+        advice = "You're improving. Consider making it longer and less predictable.";
+      } else if (score < 90) {
+        label = "STRONG";
+        color = "#00eaff";
+        advice = "Good result. A longer, unique passphrase can be even better.";
+      } else {
+        label = "VERY STRONG";
+        color = "#00ff9d";
+        advice = "This sample scores highly. Use a unique password for every account and store it in a trusted password manager.";
+      }
+
+      strengthFill.style.background = color;
+      strengthLabel.textContent = label;
+      strengthLabel.style.color = color;
+
+      if (password.length < 12) {
+        advice += " Aim for at least 12 characters; longer is generally better.";
+      }
+
+      passwordAdvice.textContent = advice;
+    }
+
+    passwordInput.addEventListener("input", analysePassword);
+
+    document.getElementById("togglePassword").addEventListener("click", () => {
+      const button = document.getElementById("togglePassword");
+
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        button.textContent = "HIDE";
+      } else {
+        passwordInput.type = "password";
+        button.textContent = "SHOW";
+      }
+    });
+
+    document.getElementById("clearPassword").addEventListener("click", () => {
+      passwordInput.value = "";
+      passwordInput.type = "password";
+      document.getElementById("togglePassword").textContent = "SHOW";
+      analysePassword();
+      passwordInput.focus();
+    });
+
+    analysePassword();
+
+
+    /* WEBSITE SECURITY CHECK — CURRENT SITE ONLY */
+
+    const securityBtn = document.getElementById("securityBtn");
+    const securityOutput = document.getElementById("securityOutput");
+
+    document.getElementById("checkedSite").textContent = location.origin;
+
+    document.getElementById("httpsStatus").textContent =
+      location.protocol === "https:" ? "HTTPS ENABLED" : "HTTPS NOT DETECTED";
+
+    document.getElementById("httpsStatus").className =
+      location.protocol === "https:" ? "green" : "red";
+
+    securityBtn.addEventListener("click", async () => {
+      securityBtn.disabled = true;
+      securityBtn.textContent = "CHECKING...";
+      securityOutput.textContent =
+        "Checking the current website's response headers...";
+
+      const headersToCheck = [
+        "Content-Security-Policy",
+        "Strict-Transport-Security",
+        "X-Content-Type-Options",
+        "Referrer-Policy",
+        "Permissions-Policy",
+        "X-Frame-Options"
+      ];
+
+      try {
+        const response = await fetch(
+          location.origin + "/?alixen_security_check=" + Date.now(),
+          {
+            method: "GET",
+            cache: "no-store",
+            credentials: "same-origin"
+          }
+        );
+
+        let html = "<strong class='accent'>WEBSITE RESPONSE</strong><br>";
+        html += "HTTP status: " + response.status + "<br><br>";
+
+        let present = 0;
+        let missing = 0;
+
+        headersToCheck.forEach(header => {
+          const value = response.headers.get(header);
+
+          if (value) {
+            present++;
+            html += "<div class='record'>";
+            html += "<span class='green'>✓ " + header + "</span><br>";
+            html += "<span>" +
+              value.replace(/</g, "&lt;").replace(/>/g, "&gt;") +
+              "</span></div>";
+          } else {
+            missing++;
+            html += "<div class='record'>";
+            html += "<span class='red'>— " + header + ": not detected</span>";
+            html += "</div>";
+          }
+        });
+
+        html += "<br><strong class='accent'>SUMMARY</strong><br>";
+        html += "<span class='green'>" + present + " detected</span> / ";
+        html += "<span class='red'>" + missing + " not detected</span>";
+
+        html += "<p class='hint'>This is a basic browser-side header review, ";
+        html += "not a complete penetration test. Some hosting platforms may ";
+        html += "not expose every header to browser JavaScript.</p>";
+
+        securityOutput.innerHTML = html;
+
+      } catch (error) {
+        securityOutput.textContent =
+          "Could not read the website response. The request may have failed, " +
+          "or the hosting environment may restrict it. " + error.message;
+      } finally {
+        securityBtn.disabled = false;
+        securityBtn.textContent = "Check Website Security";
+      }
+    });
+
+
+    /* ANIMATED GLOBE */
+
+    const globeElement = document.getElementById("globeViz");
+
+    if (typeof Globe === "function") {
+      try {
+        const world = Globe()(globeElement)
+          .globeImageUrl(
+            "https://unpkg.com/three-globe/example/img/earth-night.jpg"
+          )
+          .backgroundColor("rgba(0,0,0,0)")
+          .showAtmosphere(true)
+          .atmosphereColor("#00cfff")
+          .atmosphereAltitude(0.18)
+          .arcsData([
+            {
+              startLat: 6.5244, startLng: 3.3792,
+              endLat: 51.5072, endLng: -0.1276
+            },
+            {
+              startLat: 6.5244, startLng: 3.3792,
+              endLat: 40.7128, endLng: -74.0060
+            },
+            {
+              startLat: 6.5244, startLng: 3.3792,
+              endLat: 35.6762, endLng: 139.6503
+            },
+            {
+              startLat: 6.5244, startLng: 3.3792,
+              endLat: -1.2921, endLng: 36.8219
+            }
+          ])
+          .arcColor(() => "#00eaff")
+          .arcDashLength(0.45)
+          .arcDashGap(0.25)
+          .arcDashAnimateTime(2500)
+          .arcStroke(0.65)
+          .pointsData([
+            { lat: 6.5244, lng: 3.3792 },
+            { lat: 51.5072, lng: -0.1276 },
+            { lat: 40.7128, lng: -74.0060 },
+            { lat: 35.6762, lng: 139.6503 },
+            { lat: -1.2921, lng: 36.8219 }
+          ])
+          .pointColor(() => "#00ffb3")
+          .pointAltitude(0.02)
+          .pointRadius(0.35);
+
+        world.controls().autoRotate = true;
+        world.controls().autoRotateSpeed = 0.45;
+        world.controls().enableZoom = false;
+
+        function resizeGlobe() {
+          world.width(globeElement.clientWidth);
+          world.height(window.innerWidth <= 650 ? 350 : 440);
+        }
+
+        resizeGlobe();
+        window.addEventListener("resize", resizeGlobe);
+
+      } catch (error) {
+        globeElement.textContent = "Globe visualization unavailable.";
+      }
+    } else {
+      globeElement.textContent = "Globe library could not be loaded.";
+    }
+
+
+    /* TYPING ANIMATION */
+
+    const phrases = [
+      "Cybersecurity Learner",
+      "Ethical Hacking Enthusiast",
+      "OSINT Researcher",
+      "Penetration Testing Student",
+      "Future Security Professional"
     ];
 
-    const report = checks.map(([label,key])=>{
-      const value = headers.get(key);
-      return label + ": " + (value || "Not exposed or not present");
+    let phraseIndex = 0;
+    let characterIndex = 0;
+    let deleting = false;
+
+    function typeEffect() {
+      const element = document.getElementById("typingText");
+      const phrase = phrases[phraseIndex];
+
+      if (!deleting) {
+        characterIndex++;
+        element.textContent = phrase.substring(0, characterIndex);
+
+        if (characterIndex === phrase.length) {
+          deleting = true;
+          setTimeout(typeEffect, 1300);
+          return;
+        }
+      } else {
+        characterIndex--;
+        element.textContent = phrase.substring(0, characterIndex);
+
+        if (characterIndex === 0) {
+          deleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+        }
+      }
+
+      setTimeout(typeEffect, deleting ? 45 : 85);
+    }
+
+    typeEffect();
+
+
+
+    /* VISITOR DEVICE INFORMATION
+       Uses browser-exposed information only. It does not identify a person,
+       read a private device name, or determine physical location.
+    */
+
+    function getVisitorBrowser(ua) {
+      if (/Edg\//i.test(ua)) return "Microsoft Edge";
+      if (/OPR\//i.test(ua) || /Opera/i.test(ua)) return "Opera";
+      if (/SamsungBrowser/i.test(ua)) return "Samsung Internet";
+      if (/Firefox\//i.test(ua)) return "Mozilla Firefox";
+      if (/CriOS/i.test(ua)) return "Chrome (iOS)";
+      if (/FxiOS/i.test(ua)) return "Firefox (iOS)";
+      if (/Chrome\//i.test(ua)) return "Google Chrome";
+      if (/Safari\//i.test(ua)) return "Safari";
+      return "Browser not identified";
+    }
+
+    function getVisitorOS(ua) {
+      if (/Windows NT/i.test(ua)) return "Windows";
+      if (/Android/i.test(ua)) return "Android";
+      if (/iPhone|iPad|iPod/i.test(ua)) return "iOS / iPadOS";
+      if (/Mac OS X|Macintosh/i.test(ua)) return "macOS";
+      if (/Linux/i.test(ua)) return "Linux";
+      if (/CrOS/i.test(ua)) return "ChromeOS";
+      return navigator.userAgentData?.platform ||
+        navigator.platform || "Not exposed by browser";
+    }
+
+    function updateVisitorDeviceInfo() {
+      const ua = navigator.userAgent || "";
+      const isTablet = /iPad|Tablet/i.test(ua) ||
+        (navigator.userAgentData?.mobile === false &&
+         /Android/i.test(ua) && /Mobile/i.test(ua) === false);
+      const isMobile = navigator.userAgentData?.mobile === true ||
+        /Android|iPhone|iPod|Mobile/i.test(ua);
+
+      let deviceType = isTablet ? "Tablet" : (isMobile ? "Mobile device" : "Desktop / laptop");
+
+      document.getElementById("visitorDeviceType").textContent = deviceType;
+      document.getElementById("visitorOS").textContent = getVisitorOS(ua);
+      document.getElementById("visitorBrowser").textContent = getVisitorBrowser(ua);
+      document.getElementById("visitorScreen").textContent =
+        screen.width + " × " + screen.height +
+        " (viewport: " + window.innerWidth + " × " + window.innerHeight + ")";
+      document.getElementById("visitorTouch").textContent =
+        navigator.maxTouchPoints > 0 ? "Supported" : "Not reported";
+      document.getElementById("visitorTimezone").textContent =
+        Intl.DateTimeFormat().resolvedOptions().timeZone || "Not available";
+    }
+
+    updateVisitorDeviceInfo();
+    window.addEventListener("resize", updateVisitorDeviceInfo);
+
+
+    /* ENGLISH VOICE WELCOME
+       Starts after the visitor presses Play. Selects an installed English
+       voice when available, and otherwise requests en-US from the browser.
+    */
+
+    const englishPlayButton = document.getElementById("englishPlay");
+    const englishStopButton = document.getElementById("englishStop");
+    const englishVoiceStatus = document.getElementById("englishVoiceStatus");
+
+    const englishWelcomeMessage =
+      "Welcome to ALIXEN. My name is Adegoke Al-Hassan Adetola. " +
+      "Thank you for visiting my cybersecurity portfolio. " +
+      "Here you can explore my interests, skills, projects, and learning journey " +
+      "in cybersecurity, ethical hacking, networking, and digital defence. " +
+      "This portfolio is dedicated to responsible learning, online safety, " +
+      "and helping make the digital world more secure. Enjoy your visit to ALIXEN.";
+
+    function getEnglishVoice() {
+      if (!("speechSynthesis" in window)) return null;
+      const voices = window.speechSynthesis.getVoices();
+      return voices.find(voice => /^en(?:-|_)/i.test(voice.lang || "")) || null;
+    }
+
+    function updateEnglishVoiceStatus() {
+      if (!("speechSynthesis" in window) ||
+          !("SpeechSynthesisUtterance" in window)) {
+        englishVoiceStatus.textContent = "Voice narration is not supported by this browser.";
+        englishPlayButton.disabled = true;
+        return;
+      }
+      const voice = getEnglishVoice();
+      englishPlayButton.disabled = false;
+      englishVoiceStatus.textContent = voice
+        ? "English voice ready: " + voice.name + " (" + voice.lang + "). Press Play to hear the welcome."
+        : "Ready to use the browser's default English speech voice. Press Play to start.";
+    }
+
+    if ("speechSynthesis" in window) {
+      updateEnglishVoiceStatus();
+      window.speechSynthesis.addEventListener?.("voiceschanged", updateEnglishVoiceStatus);
+      setTimeout(updateEnglishVoiceStatus, 800);
+    } else {
+      updateEnglishVoiceStatus();
+    }
+
+    englishPlayButton.addEventListener("click", () => {
+      if (!("speechSynthesis" in window)) {
+        englishVoiceStatus.textContent = "This browser does not support speech synthesis.";
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(englishWelcomeMessage);
+      const voice = getEnglishVoice();
+      if (voice) utterance.voice = voice;
+      utterance.lang = voice?.lang || "en-US";
+      utterance.rate = 0.95;
+      utterance.pitch = 1;
+      utterance.volume = 1;
+      utterance.onstart = () => {
+        englishVoiceStatus.textContent = "ALIXEN English welcome is playing.";
+      };
+      utterance.onend = () => {
+        englishVoiceStatus.textContent = "English welcome finished.";
+      };
+      utterance.onerror = () => {
+        englishVoiceStatus.textContent = "The browser could not play the voice. Check the device's sound and speech settings.";
+      };
+      window.speechSynthesis.speak(utterance);
     });
 
-    report.unshift("Website: " + window.location.origin);
-    report.unshift("HTTP status: " + response.status);
-    result.textContent = report.join("\n");
-  }catch(error){
-    result.textContent =
-      "Unable to inspect headers from the browser. " +
-      "Some hosting and browser configurations restrict access.\n" +
-      error.message;
-  }
-}
+    englishStopButton.addEventListener("click", () => {
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+        englishVoiceStatus.textContent = "Voice playback stopped.";
+      }
+    });
 
-// Basic password-strength estimate; stays in this browser
-const passwordInput = document.getElementById("passwordInput");
-passwordInput.addEventListener("input",()=>{
-  const value = passwordInput.value;
-  let score = 0;
+    /* SCROLL REVEAL */
 
-  if(value.length >= 8) score++;
-  if(value.length >= 12) score++;
-  if(/[a-z]/.test(value) && /[A-Z]/.test(value)) score++;
-  if(/[0-9]/.test(value)) score++;
-  if(/[^A-Za-z0-9]/.test(value)) score++;
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
 
-  const labels = [
-    "Very weak",
-    "Weak",
-    "Fair",
-    "Good",
-    "Strong",
-    "Very strong"
-  ];
-
-  document.getElementById("passwordResult").textContent =
-    value.length ? "Estimated strength: " + labels[score] : "Waiting for input.";
-
-  document.getElementById("passwordMeter").style.width =
-    (value.length ? (score / 5) * 100 : 0) + "%";
-});
-
-// Footer year
-document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-
+    document.querySelectorAll(".reveal").forEach(element => {
+      observer.observe(element);
+    });
+  </script>
 </body>
 </html>
