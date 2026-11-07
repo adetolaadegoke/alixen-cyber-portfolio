@@ -643,13 +643,6 @@
         transition-duration: .01ms !important;
       }
     }
-
-    /* ALIXEN MULTILINGUAL WELCOME */
-    .language-panel { max-width: 850px; margin: 0 auto; }
-    .language-controls { display:flex; flex-wrap:wrap; gap:12px; margin-top:18px; }
-    .language-select { width:100%; padding:14px; color:var(--cyan); background:#08141f; border:1px solid var(--border); border-radius:6px; }
-    .language-status { color:var(--muted); margin-top:14px; font-size:15px; }
-    .language-message { color:var(--text); line-height:1.8; padding:16px; margin-top:14px; background:rgba(0,234,255,.045); border-left:2px solid var(--cyan); }
   </style>
 </head>
 
@@ -705,36 +698,6 @@
       <div class="globe-wrap">
         <div id="globeViz"></div>
         <div class="globe-label">ALIXEN GLOBAL SECURITY VISUALIZATION</div>
-      </div>
-    </section>
-
-    <!-- GLOBAL LANGUAGE WELCOME -->
-    <section class="section" id="global-voice">
-      <div class="container">
-        <h2 class="section-title">ALIXEN WORLD VOICE</h2>
-        <p class="section-subtitle">Your browser language is detected automatically. Choose another language anytime.</p>
-        <div class="panel language-panel reveal">
-          <label for="alixenLanguage" class="accent">WELCOME LANGUAGE</label>
-          <select id="alixenLanguage" class="language-select" aria-label="Choose welcome language">
-            <option value="en-US">English</option><option value="yo-NG">Yoruba</option>
-            <option value="ha-NG">Hausa</option><option value="ig-NG">Igbo</option>
-            <option value="fr-FR">French</option><option value="es-ES">Spanish</option>
-            <option value="de-DE">German</option><option value="pt-BR">Portuguese (Brazil)</option>
-            <option value="ar-SA">Arabic</option><option value="hi-IN">Hindi</option>
-            <option value="zh-CN">Chinese (Mandarin)</option><option value="ja-JP">Japanese</option>
-            <option value="ko-KR">Korean</option><option value="it-IT">Italian</option>
-            <option value="ru-RU">Russian</option><option value="tr-TR">Turkish</option>
-            <option value="sw-KE">Swahili</option><option value="nl-NL">Dutch</option>
-          </select>
-          <div class="language-message" id="alixenVoiceText" aria-live="polite">Welcome to ALIXEN. Select Play to hear the introduction.</div>
-          <div class="language-controls">
-            <button class="btn btn-filled" id="alixenPlayVoice" type="button">▶ PLAY WELCOME</button>
-            <button class="btn" id="alixenPauseVoice" type="button">Ⅱ PAUSE</button>
-            <button class="btn" id="alixenStopVoice" type="button">■ STOP</button>
-          </div>
-          <p class="language-status" id="alixenVoiceStatus" aria-live="polite">Detected language will appear here.</p>
-          <p class="language-status">Voice availability depends on the visitor's browser and installed device voices. Playback starts after the visitor presses Play.</p>
-        </div>
       </div>
     </section>
 
@@ -1061,21 +1024,21 @@
 
         <div class="certificate-grid">
           <div class="certificate-card reveal">
-            <img src="certificates/bcs-ctf-2026.jpg" alt="BCS CTF certificate">
+            <img src="./bcs-ctf-2026.jpg" alt="BCS CTF certificate">
             <h3>BCS CTF 2026</h3>
-            <p>Add the matching certificate image to your certificates folder.</p>
+            <p>Certificate achievement</p>
           </div>
 
           <div class="certificate-card reveal">
-            <img src="certificates/hackviser-core.jpg" alt="Hackviser Core certificate">
+            <img src="./hackviser-core.jpg" alt="Hackviser Core certificate">
             <h3>HACKVISER CORE</h3>
-            <p>Add the matching certificate image to your certificates folder.</p>
+            <p>Certificate achievement</p>
           </div>
 
           <div class="certificate-card reveal">
-            <img src="certificates/10-minute-school.jpg" alt="10 Minute School certificate">
+            <img src="./10-minute-school.jpg" alt="10 Minute School certificate">
             <h3>10 MINUTE SCHOOL</h3>
-            <p>Add the matching certificate image to your certificates folder.</p>
+            <p>Certificate achievement</p>
           </div>
         </div>
       </div>
@@ -1093,6 +1056,7 @@
 
           <div class="contact-links">
             <a class="btn btn-filled" href="mailto:adetolaadegoke59@gmail.com">Email Me</a>
+            <a class="btn" href="https://wa.me/2347073053095" target="_blank" rel="noopener noreferrer" aria-label="Chat with ALIXEN on WhatsApp">WhatsApp Me</a>
             <a class="btn" href="https://github.com/adetolaadegoke"
                target="_blank" rel="noopener noreferrer">GitHub Profile</a>
             <a class="btn" href="https://github.com/adetolaadegoke/alixen-cyber-portfolio"
@@ -1640,136 +1604,6 @@
 
     typeEffect();
 
-
-
-    /* ALIXEN MULTILINGUAL VOICE: AUTO-DETECT + MANUAL OVERRIDE */
-    (function () {
-      const select = document.getElementById('alixenLanguage');
-      const play = document.getElementById('alixenPlayVoice');
-      const pause = document.getElementById('alixenPauseVoice');
-      const stop = document.getElementById('alixenStopVoice');
-      const status = document.getElementById('alixenVoiceStatus');
-      const preview = document.getElementById('alixenVoiceText');
-      if (!select || !play || !pause || !stop || !status || !preview) return;
-
-      const messages = {
-        'en-US': 'Welcome to ALIXEN. My name is Adegoke Al-Hassan Adetola. Thank you for visiting my cybersecurity portfolio. Explore my skills, ethical hacking studies, penetration testing learning, projects and certificates. My mission is to learn, build and protect. Enjoy your visit.',
-        'yo-NG': 'E kaabo si ALIXEN. Oruko mi ni Adegoke Al-Hassan Adetola. E seun fun abewo yin. Nibi e le mo nipa awon imo mi, awon ise mi ati irin ajo mi ninu aabo ori ayelujara. E ku abewo. E je ka ko eko, ka ko nkan tuntun, ka si daabo bo imo ero.',
-        'ha-NG': 'Barka da zuwa ALIXEN. Sunana Adegoke Al-Hassan Adetola. Na gode da ziyartar shafin yanar gizona. A nan za ku iya duba kwarewata, ayyukana da karatuna a fannin tsaron yanar gizo. Barka da zuwa.',
-        'ig-NG': 'Nnọọ na ALIXEN. Aha m bụ Adegoke Al-Hassan Adetola. Daalụ maka ileta pọtụfoliyo m gbasara nchekwa ịntanetị. Nyochaa nkà m, ọrụ m na njem mmụta m. Nnọọ.',
-        'fr-FR': 'Bienvenue sur ALIXEN. Je m’appelle Adegoke Al-Hassan Adetola. Merci de visiter mon portfolio en cybersécurité. Découvrez mes compétences, mes projets et mon parcours d’apprentissage en sécurité informatique. Bonne visite.',
-        'es-ES': 'Bienvenido a ALIXEN. Me llamo Adegoke Al-Hassan Adetola. Gracias por visitar mi portafolio de ciberseguridad. Explora mis habilidades, proyectos y mi aprendizaje sobre seguridad digital. Disfruta de la visita.',
-        'de-DE': 'Willkommen bei ALIXEN. Mein Name ist Adegoke Al-Hassan Adetola. Vielen Dank für Ihren Besuch meines Cybersecurity-Portfolios. Entdecken Sie meine Fähigkeiten, Projekte und meinen Lernweg in der IT-Sicherheit.',
-        'pt-BR': 'Bem-vindo à ALIXEN. Meu nome é Adegoke Al-Hassan Adetola. Obrigado por visitar meu portfólio de cibersegurança. Conheça minhas habilidades, projetos e minha jornada de aprendizado em segurança digital.',
-        'ar-SA': 'مرحباً بكم في أليكسن. اسمي أديغوكي الحسن أديتولا. شكراً لزيارة ملفي في الأمن السيبراني. يمكنكم استكشاف مهاراتي ومشاريعي ورحلتي التعليمية. أهلاً بكم.',
-        'hi-IN': 'ALIXEN में आपका स्वागत है। मेरा नाम Adegoke Al-Hassan Adetola है। मेरे साइबर सुरक्षा पोर्टफोलियो पर आने के लिए धन्यवाद। यहाँ आप मेरे कौशल, परियोजनाओं और सीखने की यात्रा के बारे में जान सकते हैं।',
-        'zh-CN': '欢迎来到 ALIXEN。我叫 Adegoke Al-Hassan Adetola。感谢您访问我的网络安全作品集。欢迎了解我的技能、项目以及网络安全学习历程。',
-        'ja-JP': 'ALIXENへようこそ。私の名前はAdegoke Al-Hassan Adetolaです。サイバーセキュリティのポートフォリオをご覧いただきありがとうございます。私のスキルやプロジェクト、学習の歩みをご覧ください。',
-        'ko-KR': 'ALIXEN에 오신 것을 환영합니다. 제 이름은 Adegoke Al-Hassan Adetola입니다. 제 사이버 보안 포트폴리오를 방문해 주셔서 감사합니다. 제 기술과 프로젝트, 학습 과정을 살펴보세요.',
-        'it-IT': 'Benvenuti su ALIXEN. Mi chiamo Adegoke Al-Hassan Adetola. Grazie per aver visitato il mio portfolio di sicurezza informatica. Scoprite le mie competenze, i progetti e il mio percorso di apprendimento.',
-        'ru-RU': 'Добро пожаловать в ALIXEN. Меня зовут Adegoke Al-Hassan Adetola. Спасибо, что посетили моё портфолио по кибербезопасности. Здесь вы можете познакомиться с моими навыками, проектами и обучением.',
-        'tr-TR': 'ALIXEN’e hoş geldiniz. Benim adım Adegoke Al-Hassan Adetola. Siber güvenlik portföyümü ziyaret ettiğiniz için teşekkür ederim. Becerilerimi, projelerimi ve öğrenme yolculuğumu keşfedin.',
-        'sw-KE': 'Karibu ALIXEN. Jina langu ni Adegoke Al-Hassan Adetola. Asante kwa kutembelea jalada langu la usalama wa mtandao. Karibu ujifunze kuhusu ujuzi wangu, miradi yangu na safari yangu ya kujifunza.',
-        'nl-NL': 'Welkom bij ALIXEN. Mijn naam is Adegoke Al-Hassan Adetola. Bedankt voor uw bezoek aan mijn cybersecurityportfolio. Ontdek mijn vaardigheden, projecten en leertraject op het gebied van digitale beveiliging.'
-      };
-
-      const localeMap = {
-        en: 'en-US', yo: 'yo-NG', ha: 'ha-NG', ig: 'ig-NG', fr: 'fr-FR',
-        es: 'es-ES', de: 'de-DE', pt: 'pt-BR', ar: 'ar-SA', hi: 'hi-IN',
-        zh: 'zh-CN', ja: 'ja-JP', ko: 'ko-KR', it: 'it-IT', ru: 'ru-RU',
-        tr: 'tr-TR', sw: 'sw-KE', nl: 'nl-NL'
-      };
-      const supported = Object.keys(messages);
-      let voices = [];
-      let userChangedLanguage = false;
-
-      function detectLanguage() {
-        const browserLanguages = navigator.languages && navigator.languages.length
-          ? navigator.languages : [navigator.language || 'en'];
-        for (const raw of browserLanguages) {
-          const base = String(raw).toLowerCase().split('-')[0];
-          if (localeMap[base]) return localeMap[base];
-        }
-        return 'en-US';
-      }
-
-      function refreshVoices() {
-        voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
-      }
-
-      function updatePreview() {
-        const locale = select.value;
-        preview.textContent = messages[locale] || messages['en-US'];
-        const label = select.options[select.selectedIndex].text;
-        status.textContent = 'Welcome language: ' + label + '. Press Play to hear it.';
-      }
-
-      try {
-        const saved = localStorage.getItem('alixenWelcomeLanguage');
-        const initial = saved && supported.includes(saved) ? saved : detectLanguage();
-        select.value = initial;
-      } catch (_) {
-        select.value = detectLanguage();
-      }
-      updatePreview();
-
-      select.addEventListener('change', function () {
-        userChangedLanguage = true;
-        try { localStorage.setItem('alixenWelcomeLanguage', select.value); } catch (_) {}
-        if (window.speechSynthesis) window.speechSynthesis.cancel();
-        updatePreview();
-      });
-
-      if ('speechSynthesis' in window) {
-        refreshVoices();
-        window.speechSynthesis.addEventListener('voiceschanged', refreshVoices);
-      } else {
-        status.textContent = 'This browser does not support speech playback.';
-        play.disabled = true;
-      }
-
-      play.addEventListener('click', function () {
-        if (!('speechSynthesis' in window)) {
-          status.textContent = 'Speech playback is not supported by this browser.';
-          return;
-        }
-        window.speechSynthesis.cancel();
-        refreshVoices();
-        const locale = select.value;
-        const utterance = new SpeechSynthesisUtterance(messages[locale] || messages['en-US']);
-        const languageBase = locale.split('-')[0].toLowerCase();
-        const chosenVoice = voices.find(v => v.lang.toLowerCase() === locale.toLowerCase()) ||
-          voices.find(v => v.lang.toLowerCase().startsWith(languageBase + '-'));
-        utterance.lang = locale;
-        if (chosenVoice) utterance.voice = chosenVoice;
-        utterance.rate = 0.92;
-        utterance.pitch = 1;
-        utterance.volume = 1;
-        utterance.onstart = () => { status.textContent = 'ALIXEN is speaking in ' + select.options[select.selectedIndex].text + '.'; };
-        utterance.onend = () => { status.textContent = 'Welcome message completed. Enjoy ALIXEN!'; };
-        utterance.onerror = (event) => { status.textContent = 'Voice could not play (' + event.error + '). This language may not have a voice installed on this device.'; };
-        if (!chosenVoice) status.textContent = 'No exact installed voice found for this language. Trying the browser speech engine…';
-        window.speechSynthesis.speak(utterance);
-      });
-
-      pause.addEventListener('click', function () {
-        if (!window.speechSynthesis) return;
-        if (window.speechSynthesis.paused) {
-          window.speechSynthesis.resume();
-          status.textContent = 'Voice resumed.';
-        } else if (window.speechSynthesis.speaking) {
-          window.speechSynthesis.pause();
-          status.textContent = 'Voice paused.';
-        } else {
-          status.textContent = 'Press Play before pausing the welcome message.';
-        }
-      });
-
-      stop.addEventListener('click', function () {
-        if (window.speechSynthesis) window.speechSynthesis.cancel();
-        status.textContent = 'Welcome voice stopped.';
-      });
-    })();
 
     /* SCROLL REVEAL */
 
