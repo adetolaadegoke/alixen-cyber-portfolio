@@ -643,6 +643,13 @@
         transition-duration: .01ms !important;
       }
     }
+
+    /* ALIXEN MULTILINGUAL WELCOME */
+    .language-panel { max-width: 850px; margin: 0 auto; }
+    .language-controls { display:flex; flex-wrap:wrap; gap:12px; margin-top:18px; }
+    .language-select { width:100%; padding:14px; color:var(--cyan); background:#08141f; border:1px solid var(--border); border-radius:6px; }
+    .language-status { color:var(--muted); margin-top:14px; font-size:15px; }
+    .language-message { color:var(--text); line-height:1.8; padding:16px; margin-top:14px; background:rgba(0,234,255,.045); border-left:2px solid var(--cyan); }
   </style>
 </head>
 
@@ -701,6 +708,37 @@
       </div>
     </section>
 
+
+    <!-- GLOBAL LANGUAGE WELCOME -->
+    <section class="section" id="global-voice">
+      <div class="container">
+        <h2 class="section-title">ALIXEN WORLD VOICE</h2>
+        <p class="section-subtitle">Your browser language is detected automatically. Choose another language anytime.</p>
+        <div class="panel language-panel reveal">
+          <label for="alixenLanguage" class="accent">WELCOME LANGUAGE</label>
+          <select id="alixenLanguage" class="language-select" aria-label="Choose welcome language">
+            <option value="en-US">English</option><option value="yo-NG">Yoruba</option>
+            <option value="ha-NG">Hausa</option><option value="ig-NG">Igbo</option>
+            <option value="fr-FR">French</option><option value="es-ES">Spanish</option>
+            <option value="de-DE">German</option><option value="pt-BR">Portuguese (Brazil)</option>
+            <option value="ar-SA">Arabic</option><option value="hi-IN">Hindi</option>
+            <option value="zh-CN">Chinese (Mandarin)</option><option value="ja-JP">Japanese</option>
+            <option value="ko-KR">Korean</option><option value="it-IT">Italian</option>
+            <option value="ru-RU">Russian</option><option value="tr-TR">Turkish</option>
+            <option value="sw-KE">Swahili</option><option value="nl-NL">Dutch</option>
+          </select>
+          <div class="language-message" id="alixenVoiceText" aria-live="polite">Welcome to ALIXEN. Select Play to hear the introduction.</div>
+          <div class="language-controls">
+            <button class="btn btn-filled" id="alixenPlayVoice" type="button">▶ PLAY WELCOME</button>
+            <button class="btn" id="alixenPauseVoice" type="button">Ⅱ PAUSE</button>
+            <button class="btn" id="alixenStopVoice" type="button">■ STOP</button>
+          </div>
+          <p class="language-status" id="alixenVoiceStatus" aria-live="polite">Detected language will appear here.</p>
+          <p class="language-status">Voice availability depends on the visitor's browser and installed device voices. Playback starts after the visitor presses Play.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- STATUS -->
     <section class="container">
       <div class="status-strip">
@@ -719,83 +757,6 @@
         <div class="status-box">
           <small>INTERFACE</small>
           <strong class="green">ONLINE</strong>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- VISITOR DEVICE + ENGLISH VOICE -->
-    <section class="container" id="visitor-experience" style="padding-top: 12px;">
-      <div class="panel-grid">
-        <div class="panel reveal">
-          <div class="panel-heading">
-            <h3>05 / VISITOR DEVICE INFO</h3>
-            <span class="panel-tag">BROWSER DETAILS</span>
-          </div>
-
-          <div class="data-row">
-            <span>Device type</span>
-            <strong id="visitorDeviceType">Detecting...</strong>
-          </div>
-          <div class="data-row">
-            <span>Operating system</span>
-            <strong id="visitorOS">Detecting...</strong>
-          </div>
-          <div class="data-row">
-            <span>Browser</span>
-            <strong id="visitorBrowser">Detecting...</strong>
-          </div>
-          <div class="data-row">
-            <span>Screen size</span>
-            <strong id="visitorScreen">Detecting...</strong>
-          </div>
-          <div class="data-row">
-            <span>Touch support</span>
-            <strong id="visitorTouch">Detecting...</strong>
-          </div>
-          <div class="data-row">
-            <span>Time zone</span>
-            <strong id="visitorTimezone">Detecting...</strong>
-          </div>
-
-          <p class="hint">
-            This shows only details the visitor's browser makes available.
-            It cannot reliably read a private device name, exact model,
-            personal identity, or physical location.
-          </p>
-        </div>
-
-        <div class="panel reveal">
-          <div class="panel-heading">
-            <h3>06 / ENGLISH VOICE WELCOME</h3>
-            <span class="panel-tag">VOICE GREETING</span>
-          </div>
-
-          <p class="hint" style="margin-top:0; margin-bottom:14px;">
-            Play the ALIXEN welcome message in English using your browser speech voice.
-          </p>
-
-          <div class="output" id="yorubaVoiceText">
-            Welcome to ALIXEN. My name is Adegoke Al-Hassan Adetola.
-            Thank you for visiting this portfolio.
-          </div>
-
-          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
-            <button class="tool-button" id="englishPlay" type="button">
-              ▶ PLAY ENGLISH WELCOME
-            </button>
-            <button class="tool-button" id="englishStop" type="button">
-              ■ STOP VOICE
-            </button>
-          </div>
-
-          <p class="hint" id="englishVoiceStatus" role="status" aria-live="polite">
-            Ready. Press Play English Welcome to hear the narration.
-          </p>
-          <p class="hint">
-            Voice playback starts only after the visitor presses Play.
-            The browser uses an available English speech voice when possible.
-          </p>
         </div>
       </div>
     </section>
@@ -1681,137 +1642,134 @@
     typeEffect();
 
 
+\n    /* ALIXEN MULTILINGUAL VOICE: AUTO-DETECT + MANUAL OVERRIDE */
+    (function () {
+      const select = document.getElementById('alixenLanguage');
+      const play = document.getElementById('alixenPlayVoice');
+      const pause = document.getElementById('alixenPauseVoice');
+      const stop = document.getElementById('alixenStopVoice');
+      const status = document.getElementById('alixenVoiceStatus');
+      const preview = document.getElementById('alixenVoiceText');
+      if (!select || !play || !pause || !stop || !status || !preview) return;
 
-    /* VISITOR DEVICE INFORMATION
-       Uses browser-exposed information only. It does not identify a person,
-       read a private device name, or determine physical location.
-    */
+      const messages = {
+        'en-US': 'Welcome to ALIXEN. My name is Adegoke Al-Hassan Adetola. Thank you for visiting my cybersecurity portfolio. Explore my skills, ethical hacking studies, penetration testing learning, projects and certificates. My mission is to learn, build and protect. Enjoy your visit.',
+        'yo-NG': 'E kaabo si ALIXEN. Oruko mi ni Adegoke Al-Hassan Adetola. E seun fun abewo yin. Nibi e le mo nipa awon imo mi, awon ise mi ati irin ajo mi ninu aabo ori ayelujara. E ku abewo. E je ka ko eko, ka ko nkan tuntun, ka si daabo bo imo ero.',
+        'ha-NG': 'Barka da zuwa ALIXEN. Sunana Adegoke Al-Hassan Adetola. Na gode da ziyartar shafin yanar gizona. A nan za ku iya duba kwarewata, ayyukana da karatuna a fannin tsaron yanar gizo. Barka da zuwa.',
+        'ig-NG': 'Nnọọ na ALIXEN. Aha m bụ Adegoke Al-Hassan Adetola. Daalụ maka ileta pọtụfoliyo m gbasara nchekwa ịntanetị. Nyochaa nkà m, ọrụ m na njem mmụta m. Nnọọ.',
+        'fr-FR': 'Bienvenue sur ALIXEN. Je m’appelle Adegoke Al-Hassan Adetola. Merci de visiter mon portfolio en cybersécurité. Découvrez mes compétences, mes projets et mon parcours d’apprentissage en sécurité informatique. Bonne visite.',
+        'es-ES': 'Bienvenido a ALIXEN. Me llamo Adegoke Al-Hassan Adetola. Gracias por visitar mi portafolio de ciberseguridad. Explora mis habilidades, proyectos y mi aprendizaje sobre seguridad digital. Disfruta de la visita.',
+        'de-DE': 'Willkommen bei ALIXEN. Mein Name ist Adegoke Al-Hassan Adetola. Vielen Dank für Ihren Besuch meines Cybersecurity-Portfolios. Entdecken Sie meine Fähigkeiten, Projekte und meinen Lernweg in der IT-Sicherheit.',
+        'pt-BR': 'Bem-vindo à ALIXEN. Meu nome é Adegoke Al-Hassan Adetola. Obrigado por visitar meu portfólio de cibersegurança. Conheça minhas habilidades, projetos e minha jornada de aprendizado em segurança digital.',
+        'ar-SA': 'مرحباً بكم في أليكسن. اسمي أديغوكي الحسن أديتولا. شكراً لزيارة ملفي في الأمن السيبراني. يمكنكم استكشاف مهاراتي ومشاريعي ورحلتي التعليمية. أهلاً بكم.',
+        'hi-IN': 'ALIXEN में आपका स्वागत है। मेरा नाम Adegoke Al-Hassan Adetola है। मेरे साइबर सुरक्षा पोर्टफोलियो पर आने के लिए धन्यवाद। यहाँ आप मेरे कौशल, परियोजनाओं और सीखने की यात्रा के बारे में जान सकते हैं।',
+        'zh-CN': '欢迎来到 ALIXEN。我叫 Adegoke Al-Hassan Adetola。感谢您访问我的网络安全作品集。欢迎了解我的技能、项目以及网络安全学习历程。',
+        'ja-JP': 'ALIXENへようこそ。私の名前はAdegoke Al-Hassan Adetolaです。サイバーセキュリティのポートフォリオをご覧いただきありがとうございます。私のスキルやプロジェクト、学習の歩みをご覧ください。',
+        'ko-KR': 'ALIXEN에 오신 것을 환영합니다. 제 이름은 Adegoke Al-Hassan Adetola입니다. 제 사이버 보안 포트폴리오를 방문해 주셔서 감사합니다. 제 기술과 프로젝트, 학습 과정을 살펴보세요.',
+        'it-IT': 'Benvenuti su ALIXEN. Mi chiamo Adegoke Al-Hassan Adetola. Grazie per aver visitato il mio portfolio di sicurezza informatica. Scoprite le mie competenze, i progetti e il mio percorso di apprendimento.',
+        'ru-RU': 'Добро пожаловать в ALIXEN. Меня зовут Adegoke Al-Hassan Adetola. Спасибо, что посетили моё портфолио по кибербезопасности. Здесь вы можете познакомиться с моими навыками, проектами и обучением.',
+        'tr-TR': 'ALIXEN’e hoş geldiniz. Benim adım Adegoke Al-Hassan Adetola. Siber güvenlik portföyümü ziyaret ettiğiniz için teşekkür ederim. Becerilerimi, projelerimi ve öğrenme yolculuğumu keşfedin.',
+        'sw-KE': 'Karibu ALIXEN. Jina langu ni Adegoke Al-Hassan Adetola. Asante kwa kutembelea jalada langu la usalama wa mtandao. Karibu ujifunze kuhusu ujuzi wangu, miradi yangu na safari yangu ya kujifunza.',
+        'nl-NL': 'Welkom bij ALIXEN. Mijn naam is Adegoke Al-Hassan Adetola. Bedankt voor uw bezoek aan mijn cybersecurityportfolio. Ontdek mijn vaardigheden, projecten en leertraject op het gebied van digitale beveiliging.'
+      };
 
-    function getVisitorBrowser(ua) {
-      if (/Edg\//i.test(ua)) return "Microsoft Edge";
-      if (/OPR\//i.test(ua) || /Opera/i.test(ua)) return "Opera";
-      if (/SamsungBrowser/i.test(ua)) return "Samsung Internet";
-      if (/Firefox\//i.test(ua)) return "Mozilla Firefox";
-      if (/CriOS/i.test(ua)) return "Chrome (iOS)";
-      if (/FxiOS/i.test(ua)) return "Firefox (iOS)";
-      if (/Chrome\//i.test(ua)) return "Google Chrome";
-      if (/Safari\//i.test(ua)) return "Safari";
-      return "Browser not identified";
-    }
+      const localeMap = {
+        en: 'en-US', yo: 'yo-NG', ha: 'ha-NG', ig: 'ig-NG', fr: 'fr-FR',
+        es: 'es-ES', de: 'de-DE', pt: 'pt-BR', ar: 'ar-SA', hi: 'hi-IN',
+        zh: 'zh-CN', ja: 'ja-JP', ko: 'ko-KR', it: 'it-IT', ru: 'ru-RU',
+        tr: 'tr-TR', sw: 'sw-KE', nl: 'nl-NL'
+      };
+      const supported = Object.keys(messages);
+      let voices = [];
+      let userChangedLanguage = false;
 
-    function getVisitorOS(ua) {
-      if (/Windows NT/i.test(ua)) return "Windows";
-      if (/Android/i.test(ua)) return "Android";
-      if (/iPhone|iPad|iPod/i.test(ua)) return "iOS / iPadOS";
-      if (/Mac OS X|Macintosh/i.test(ua)) return "macOS";
-      if (/Linux/i.test(ua)) return "Linux";
-      if (/CrOS/i.test(ua)) return "ChromeOS";
-      return navigator.userAgentData?.platform ||
-        navigator.platform || "Not exposed by browser";
-    }
-
-    function updateVisitorDeviceInfo() {
-      const ua = navigator.userAgent || "";
-      const isTablet = /iPad|Tablet/i.test(ua) ||
-        (navigator.userAgentData?.mobile === false &&
-         /Android/i.test(ua) && /Mobile/i.test(ua) === false);
-      const isMobile = navigator.userAgentData?.mobile === true ||
-        /Android|iPhone|iPod|Mobile/i.test(ua);
-
-      let deviceType = isTablet ? "Tablet" : (isMobile ? "Mobile device" : "Desktop / laptop");
-
-      document.getElementById("visitorDeviceType").textContent = deviceType;
-      document.getElementById("visitorOS").textContent = getVisitorOS(ua);
-      document.getElementById("visitorBrowser").textContent = getVisitorBrowser(ua);
-      document.getElementById("visitorScreen").textContent =
-        screen.width + " × " + screen.height +
-        " (viewport: " + window.innerWidth + " × " + window.innerHeight + ")";
-      document.getElementById("visitorTouch").textContent =
-        navigator.maxTouchPoints > 0 ? "Supported" : "Not reported";
-      document.getElementById("visitorTimezone").textContent =
-        Intl.DateTimeFormat().resolvedOptions().timeZone || "Not available";
-    }
-
-    updateVisitorDeviceInfo();
-    window.addEventListener("resize", updateVisitorDeviceInfo);
-
-
-    /* ENGLISH VOICE WELCOME
-       Starts after the visitor presses Play. Selects an installed English
-       voice when available, and otherwise requests en-US from the browser.
-    */
-
-    const englishPlayButton = document.getElementById("englishPlay");
-    const englishStopButton = document.getElementById("englishStop");
-    const englishVoiceStatus = document.getElementById("englishVoiceStatus");
-
-    const englishWelcomeMessage =
-      "Welcome to ALIXEN. My name is Adegoke Al-Hassan Adetola. " +
-      "Thank you for visiting my cybersecurity portfolio. " +
-      "Here you can explore my interests, skills, projects, and learning journey " +
-      "in cybersecurity, ethical hacking, networking, and digital defence. " +
-      "This portfolio is dedicated to responsible learning, online safety, " +
-      "and helping make the digital world more secure. Enjoy your visit to ALIXEN.";
-
-    function getEnglishVoice() {
-      if (!("speechSynthesis" in window)) return null;
-      const voices = window.speechSynthesis.getVoices();
-      return voices.find(voice => /^en(?:-|_)/i.test(voice.lang || "")) || null;
-    }
-
-    function updateEnglishVoiceStatus() {
-      if (!("speechSynthesis" in window) ||
-          !("SpeechSynthesisUtterance" in window)) {
-        englishVoiceStatus.textContent = "Voice narration is not supported by this browser.";
-        englishPlayButton.disabled = true;
-        return;
+      function detectLanguage() {
+        const browserLanguages = navigator.languages && navigator.languages.length
+          ? navigator.languages : [navigator.language || 'en'];
+        for (const raw of browserLanguages) {
+          const base = String(raw).toLowerCase().split('-')[0];
+          if (localeMap[base]) return localeMap[base];
+        }
+        return 'en-US';
       }
-      const voice = getEnglishVoice();
-      englishPlayButton.disabled = false;
-      englishVoiceStatus.textContent = voice
-        ? "English voice ready: " + voice.name + " (" + voice.lang + "). Press Play to hear the welcome."
-        : "Ready to use the browser's default English speech voice. Press Play to start.";
-    }
 
-    if ("speechSynthesis" in window) {
-      updateEnglishVoiceStatus();
-      window.speechSynthesis.addEventListener?.("voiceschanged", updateEnglishVoiceStatus);
-      setTimeout(updateEnglishVoiceStatus, 800);
-    } else {
-      updateEnglishVoiceStatus();
-    }
-
-    englishPlayButton.addEventListener("click", () => {
-      if (!("speechSynthesis" in window)) {
-        englishVoiceStatus.textContent = "This browser does not support speech synthesis.";
-        return;
+      function refreshVoices() {
+        voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
       }
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(englishWelcomeMessage);
-      const voice = getEnglishVoice();
-      if (voice) utterance.voice = voice;
-      utterance.lang = voice?.lang || "en-US";
-      utterance.rate = 0.95;
-      utterance.pitch = 1;
-      utterance.volume = 1;
-      utterance.onstart = () => {
-        englishVoiceStatus.textContent = "ALIXEN English welcome is playing.";
-      };
-      utterance.onend = () => {
-        englishVoiceStatus.textContent = "English welcome finished.";
-      };
-      utterance.onerror = () => {
-        englishVoiceStatus.textContent = "The browser could not play the voice. Check the device's sound and speech settings.";
-      };
-      window.speechSynthesis.speak(utterance);
-    });
 
-    englishStopButton.addEventListener("click", () => {
-      if ("speechSynthesis" in window) {
+      function updatePreview() {
+        const locale = select.value;
+        preview.textContent = messages[locale] || messages['en-US'];
+        const label = select.options[select.selectedIndex].text;
+        status.textContent = 'Welcome language: ' + label + '. Press Play to hear it.';
+      }
+
+      try {
+        const saved = localStorage.getItem('alixenWelcomeLanguage');
+        const initial = saved && supported.includes(saved) ? saved : detectLanguage();
+        select.value = initial;
+      } catch (_) {
+        select.value = detectLanguage();
+      }
+      updatePreview();
+
+      select.addEventListener('change', function () {
+        userChangedLanguage = true;
+        try { localStorage.setItem('alixenWelcomeLanguage', select.value); } catch (_) {}
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+        updatePreview();
+      });
+
+      if ('speechSynthesis' in window) {
+        refreshVoices();
+        window.speechSynthesis.addEventListener('voiceschanged', refreshVoices);
+      } else {
+        status.textContent = 'This browser does not support speech playback.';
+        play.disabled = true;
+      }
+
+      play.addEventListener('click', function () {
+        if (!('speechSynthesis' in window)) {
+          status.textContent = 'Speech playback is not supported by this browser.';
+          return;
+        }
         window.speechSynthesis.cancel();
-        englishVoiceStatus.textContent = "Voice playback stopped.";
-      }
-    });
+        refreshVoices();
+        const locale = select.value;
+        const utterance = new SpeechSynthesisUtterance(messages[locale] || messages['en-US']);
+        const languageBase = locale.split('-')[0].toLowerCase();
+        const chosenVoice = voices.find(v => v.lang.toLowerCase() === locale.toLowerCase()) ||
+          voices.find(v => v.lang.toLowerCase().startsWith(languageBase + '-'));
+        utterance.lang = locale;
+        if (chosenVoice) utterance.voice = chosenVoice;
+        utterance.rate = 0.92;
+        utterance.pitch = 1;
+        utterance.volume = 1;
+        utterance.onstart = () => { status.textContent = 'ALIXEN is speaking in ' + select.options[select.selectedIndex].text + '.'; };
+        utterance.onend = () => { status.textContent = 'Welcome message completed. Enjoy ALIXEN!'; };
+        utterance.onerror = (event) => { status.textContent = 'Voice could not play (' + event.error + '). This language may not have a voice installed on this device.'; };
+        if (!chosenVoice) status.textContent = 'No exact installed voice found for this language. Trying the browser speech engine…';
+        window.speechSynthesis.speak(utterance);
+      });
+
+      pause.addEventListener('click', function () {
+        if (!window.speechSynthesis) return;
+        if (window.speechSynthesis.paused) {
+          window.speechSynthesis.resume();
+          status.textContent = 'Voice resumed.';
+        } else if (window.speechSynthesis.speaking) {
+          window.speechSynthesis.pause();
+          status.textContent = 'Voice paused.';
+        } else {
+          status.textContent = 'Press Play before pausing the welcome message.';
+        }
+      });
+
+      stop.addEventListener('click', function () {
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+        status.textContent = 'Welcome voice stopped.';
+      });
+    })();
 
     /* SCROLL REVEAL */
 
