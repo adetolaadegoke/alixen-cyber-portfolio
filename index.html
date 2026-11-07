@@ -6,20 +6,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#03070c">
 
-<title>ALIXEN | Cybersecurity Portfolio</title>
-<meta name="description" content="ADGEOKE AL-HASSAN ADETOLA - ALIXEN Cybersecurity Portfolio">
+<title>ALIXEN | Cybersecurity & Ethical Hacking</title>
+<meta name="description" content="ADEGOKE AL-HASSAN ADETOLA — ALIXEN Cybersecurity Portfolio. Ethical hacking, penetration testing, networking and digital defence.">
+<meta name="keywords" content="ALIXEN, Cybersecurity, Ethical Hacking, Pentesting, Kali Linux, Nmap, Burp Suite">
+<meta name="author" content="ADEGOKE AL-HASSAN ADETOLA">
 
-<!-- 3D Globe library -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
 <script src="https://unpkg.com/globe.gl"></script>
 
 <style>
 :root {
   --bg:#03070c;
   --panel:#091521;
+  --panel2:#0c1d2b;
   --cyan:#00eaff;
+  --blue:#087cff;
   --white:#eafaff;
   --muted:#91a7b8;
-  --line:rgba(0,234,255,.25);
+  --line:rgba(0,234,255,.22);
+  --green:#00e59b;
+  --orange:#ffb347;
 }
 
 * {
@@ -33,7 +41,7 @@ html {scroll-behavior:smooth}
 body {
   background:var(--bg);
   color:var(--white);
-  font-family:Arial,sans-serif;
+  font-family:Inter,Arial,sans-serif;
   overflow-x:hidden;
 }
 
@@ -41,7 +49,7 @@ body:before {
   content:"";
   position:fixed;
   inset:0;
-  z-index:-1;
+  z-index:-2;
   pointer-events:none;
   background-image:
     linear-gradient(rgba(0,234,255,.035) 1px,transparent 1px),
@@ -49,23 +57,45 @@ body:before {
   background-size:40px 40px;
 }
 
-a {text-decoration:none;color:inherit}
-.container {width:min(1200px,92%);margin:auto}
-.cyan {color:var(--cyan)}
+body:after {
+  content:"";
+  position:fixed;
+  width:450px;
+  height:450px;
+  top:10%;
+  left:-200px;
+  background:#006eff12;
+  filter:blur(100px);
+  z-index:-1;
+  pointer-events:none;
+}
 
-/* NAVIGATION */
+a {text-decoration:none;color:inherit}
+button {font-family:inherit}
+.container {width:min(1180px,92%);margin:auto}
+.cyan {color:var(--cyan)}
+.muted {color:var(--muted)}
+.mono {font-family:"Space Mono",monospace}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar {width:7px}
+::-webkit-scrollbar-track {background:#03070c}
+::-webkit-scrollbar-thumb {background:#00a9bc;border-radius:10px}
+
+/* HEADER */
 
 header {
   position:sticky;
   top:0;
-  z-index:50;
-  background:rgba(3,7,12,.95);
-  backdrop-filter:blur(15px);
+  z-index:100;
+  background:rgba(3,7,12,.94);
+  backdrop-filter:blur(18px);
   border-bottom:1px solid var(--line);
 }
 
 nav {
-  height:75px;
+  height:76px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -73,98 +103,59 @@ nav {
 
 .logo {
   color:var(--cyan);
-  font-size:27px;
-  font-weight:1000;
+  font-size:28px;
+  font-weight:900;
   letter-spacing:5px;
-  text-shadow:0 0 20px var(--cyan);
+  text-shadow:0 0 20px #00eaff65;
+}
+
+.logo small {
+  display:block;
+  font-size:8px;
+  letter-spacing:4px;
+  color:var(--muted);
+  text-shadow:none;
 }
 
 .nav-links {
   display:flex;
-  gap:22px;
+  align-items:center;
+  gap:21px;
   list-style:none;
 }
 
 .nav-links a {
-  font-size:12px;
   color:var(--muted);
+  font:10px "Space Mono",monospace;
+  transition:.3s;
 }
 
-.nav-links a:hover {color:var(--cyan)}
+.nav-links a:hover,
+.nav-links a.active {color:var(--cyan)}
 
 .menu {
   display:none;
   background:transparent;
   color:var(--cyan);
   border:1px solid var(--cyan);
-  padding:10px;
+  padding:10px 14px;
+  cursor:pointer;
 }
 
-/* HERO */
-
-.hero {
-  min-height:690px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:center;
-  gap:35px;
-  padding-top:65px;
-  padding-bottom:65px;
-}
-
-.eyebrow {
-  color:var(--cyan);
-  font:12px monospace;
-  letter-spacing:4px;
-  margin-bottom:25px;
-}
-
-h1 {
-  font-size:clamp(55px,8vw,100px);
-  line-height:.95;
-  letter-spacing:-5px;
-}
-
-h1 span {
-  color:var(--cyan);
-  text-shadow:0 0 30px #00eaff70;
-}
-
-.typing {
-  min-height:35px;
-  color:var(--cyan);
-  font:17px monospace;
-  margin:22px 0;
-}
-
-.cursor {animation:blink .7s infinite}
-
-@keyframes blink {
-  50% {opacity:0}
-}
-
-.description {
-  color:var(--muted);
-  line-height:1.9;
-  margin:20px 0 25px;
-}
-
-.status {
-  display:inline-block;
-  border:1px solid var(--line);
-  color:var(--cyan);
-  padding:10px 15px;
-  font:11px monospace;
-}
+/* BUTTONS */
 
 .btn {
-  display:inline-block;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
   border:1px solid var(--cyan);
   color:var(--cyan);
-  padding:13px 19px;
+  padding:14px 19px;
   margin:5px 8px 5px 0;
-  font-size:12px;
-  font-weight:bold;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1px;
   transition:.3s;
 }
 
@@ -174,18 +165,90 @@ h1 span {
 }
 
 .btn:hover {
-  box-shadow:0 0 25px #00eaff60;
+  box-shadow:0 0 25px #00eaff50;
   transform:translateY(-3px);
+}
+
+.btn.secondary {border-color:#34546a;color:var(--white)}
+
+/* HERO */
+
+.hero {
+  min-height:680px;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  align-items:center;
+  gap:35px;
+  padding-top:65px;
+  padding-bottom:65px;
+}
+
+.eyebrow {
+  color:var(--cyan);
+  font:11px "Space Mono",monospace;
+  letter-spacing:4px;
+  margin-bottom:24px;
+}
+
+h1 {
+  font-size:clamp(60px,9vw,105px);
+  line-height:.94;
+  letter-spacing:-6px;
+  font-weight:900;
+}
+
+h1 span {
+  color:var(--cyan);
+  text-shadow:0 0 35px #00eaff55;
+}
+
+.typing {
+  min-height:35px;
+  color:var(--cyan);
+  font:14px "Space Mono",monospace;
+  margin:25px 0;
+}
+
+.cursor {animation:blink .7s infinite}
+
+@keyframes blink {50%{opacity:0}}
+
+.description {
+  color:var(--muted);
+  line-height:1.9;
+  max-width:550px;
+  font-size:14px;
+  margin-bottom:25px;
+}
+
+.status {
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  border:1px solid var(--line);
+  color:var(--green);
+  padding:11px 14px;
+  font:10px "Space Mono",monospace;
+  margin-bottom:15px;
+}
+
+.status-dot {
+  width:7px;
+  height:7px;
+  background:var(--green);
+  border-radius:50%;
+  box-shadow:0 0 10px var(--green);
 }
 
 /* GLOBE */
 
 .globe-panel {
   position:relative;
-  height:500px;
+  height:475px;
   overflow:hidden;
   border:1px solid var(--line);
   background:radial-gradient(ellipse,#092738,#03070c 75%);
+  box-shadow:0 0 50px #00eaff0a;
 }
 
 .globe-label {
@@ -194,13 +257,21 @@ h1 span {
   left:18px;
   z-index:5;
   color:var(--cyan);
-  font:11px monospace;
+  font:10px "Space Mono",monospace;
   letter-spacing:2px;
 }
 
-#globe {
-  width:100%;
-  height:100%;
+#globe {width:100%;height:100%}
+
+.globe-fallback {
+  display:none;
+  position:absolute;
+  inset:0;
+  align-items:center;
+  justify-content:center;
+  color:var(--cyan);
+  text-align:center;
+  font:13px "Space Mono",monospace;
 }
 
 .globe-footer {
@@ -211,34 +282,33 @@ h1 span {
   display:flex;
   justify-content:space-between;
   color:var(--cyan);
-  font:9px monospace;
+  font:9px "Space Mono",monospace;
   z-index:5;
 }
 
-.globe-fallback {
-  display:none;
-  position:absolute;
-  inset:0;
-  align-items:center;
-  justify-content:center;
-  color:var(--cyan);
-  text-align:center;
-  font:13px monospace;
-}
-
-/* SECTIONS */
+/* SECTION GLOBAL */
 
 section {padding:90px 0}
 
 .section-label {
   color:var(--cyan);
-  font:12px monospace;
+  font:11px "Space Mono",monospace;
   letter-spacing:3px;
 }
 
 .section-title {
-  font-size:clamp(32px,5vw,52px);
-  margin:12px 0 35px;
+  font-size:clamp(32px,5vw,51px);
+  letter-spacing:-2px;
+  margin:13px 0 35px;
+}
+
+.section-intro {
+  max-width:680px;
+  color:var(--muted);
+  line-height:1.8;
+  font-size:13px;
+  margin-top:-20px;
+  margin-bottom:30px;
 }
 
 .panel,.card {
@@ -251,21 +321,8 @@ section {padding:90px 0}
 .panel p,.card p {
   color:var(--muted);
   line-height:1.85;
+  font-size:13px;
 }
-
-.about-grid {
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:20px;
-}
-
-.terminal {
-  color:var(--cyan);
-  font:13px/2 monospace;
-  overflow-wrap:anywhere;
-}
-
-.terminal span {color:var(--muted)}
 
 .grid {
   display:grid;
@@ -279,25 +336,167 @@ section {padding:90px 0}
   box-shadow:0 0 25px #00eaff18;
 }
 
-.icon {
-  color:var(--cyan);
-  font-size:30px;
-  margin-bottom:15px;
-}
-
 .card h3 {
   color:var(--cyan);
+  font-size:15px;
   margin-bottom:12px;
+}
+
+.icon {
+  color:var(--cyan);
+  font-size:28px;
+  margin-bottom:16px;
 }
 
 .chip {
   display:inline-block;
   border:1px solid var(--line);
   color:var(--cyan);
-  padding:5px 9px;
-  font:10px monospace;
-  margin-top:12px;
+  padding:6px 9px;
+  font:9px "Space Mono",monospace;
+  margin:13px 5px 0 0;
 }
+
+/* ABOUT */
+
+.about-grid {
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:20px;
+}
+
+.terminal {
+  color:var(--cyan);
+  font:11px/2.3 "Space Mono",monospace;
+  overflow-wrap:anywhere;
+}
+
+.terminal span {color:var(--muted)}
+
+/* SKILLS */
+
+.skill-row {
+  margin-bottom:22px;
+}
+
+.skill-head {
+  display:flex;
+  justify-content:space-between;
+  color:var(--white);
+  font-size:11px;
+  margin-bottom:9px;
+}
+
+.skill-head span:last-child {
+  color:var(--cyan);
+  font-family:"Space Mono",monospace;
+}
+
+.skill-track {
+  height:5px;
+  background:#142533;
+  overflow:hidden;
+}
+
+.skill-fill {
+  height:100%;
+  background:linear-gradient(90deg,#087cff,var(--cyan));
+  box-shadow:0 0 12px var(--cyan);
+}
+
+/* TOOLS */
+
+.tool-card {
+  text-align:center;
+  min-height:145px;
+}
+
+.tool-symbol {
+  font-size:32px;
+  color:var(--cyan);
+  margin-bottom:12px;
+}
+
+.tool-card h3 {font-size:13px}
+
+/* PROJECTS */
+
+.project-number {
+  color:#34546a;
+  font:32px "Space Mono",monospace;
+  margin-bottom:15px;
+}
+
+.project-status {
+  display:inline-block;
+  margin-top:15px;
+  padding:6px 10px;
+  border:1px solid var(--line);
+  color:var(--orange);
+  font:9px "Space Mono",monospace;
+}
+
+.project-status.done {
+  color:var(--green);
+  border-color:#00e59b55;
+}
+
+.project-status.learning {
+  color:var(--cyan);
+}
+
+/* PENTEST SECTION */
+
+.pentest-banner {
+  border:1px solid var(--line);
+  padding:30px;
+  background:linear-gradient(120deg,#082031,#07111b);
+  margin-bottom:22px;
+}
+
+.pentest-banner h3 {
+  color:var(--cyan);
+  font-size:21px;
+  margin-bottom:12px;
+}
+
+.pentest-banner p {
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.9;
+}
+
+.lab-list {
+  list-style:none;
+  margin-top:15px;
+}
+
+.lab-list li {
+  color:var(--muted);
+  padding:12px 0;
+  border-bottom:1px solid #17303e;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.lab-list li:before {
+  content:"> ";
+  color:var(--cyan);
+  font-family:"Space Mono",monospace;
+}
+
+/* REPORTS */
+
+.report-box {
+  background:#050b12;
+  border:1px solid var(--line);
+  padding:22px;
+  font:11px/2 "Space Mono",monospace;
+  color:var(--muted);
+  overflow-wrap:anywhere;
+}
+
+.report-box strong {color:var(--cyan)}
 
 /* CERTIFICATES */
 
@@ -317,7 +516,7 @@ section {padding:90px 0}
   height:210px;
   border:1px dashed var(--cyan);
   color:var(--cyan);
-  font:12px monospace;
+  font:11px "Space Mono",monospace;
   text-align:center;
   align-items:center;
   justify-content:center;
@@ -325,14 +524,14 @@ section {padding:90px 0}
   margin-bottom:17px;
 }
 
-/* MODAL */
+/* CERTIFICATE MODAL */
 
 .modal {
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.96);
-  z-index:100;
+  background:rgba(0,0,0,.97);
+  z-index:200;
   align-items:center;
   justify-content:center;
   padding:20px;
@@ -372,14 +571,47 @@ section {padding:90px 0}
   padding:17px 0;
   border-bottom:1px solid var(--line);
   overflow-wrap:anywhere;
+  font-size:13px;
 }
+
+.contact-link:hover {color:white}
+
+.contact-note {
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.8;
+  margin-top:18px;
+}
+
+/* FOOTER */
 
 footer {
   text-align:center;
-  padding:30px 15px;
+  padding:35px 15px;
   border-top:1px solid var(--line);
   color:var(--muted);
-  font-size:12px;
+  font-size:11px;
+  line-height:2;
+}
+
+.footer-logo {
+  color:var(--cyan);
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:4px;
+}
+
+/* REVEAL ANIMATIONS */
+
+.reveal {
+  opacity:0;
+  transform:translateY(25px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+
+.reveal.visible {
+  opacity:1;
+  transform:translateY(0);
 }
 
 /* MOBILE */
@@ -390,20 +622,25 @@ footer {
   }
 
   .grid {grid-template-columns:repeat(2,1fr)}
+
   .menu {display:block}
 
   .nav-links {
     display:none;
     position:absolute;
-    top:75px;
+    top:76px;
     left:0;
     right:0;
     background:#06111b;
     padding:25px;
     flex-direction:column;
+    align-items:flex-start;
+    border-bottom:1px solid var(--line);
   }
 
   .nav-links.show {display:flex}
+
+  .hero {padding-top:55px}
 }
 
 @media(max-width:520px) {
@@ -411,6 +648,9 @@ footer {
   .globe-panel {height:340px}
   h1 {letter-spacing:-3px}
   section {padding:65px 0}
+  .section-title {letter-spacing:-1px}
+  .globe-footer {font-size:7px}
+  .panel,.card {padding:21px}
 }
 </style>
 </head>
@@ -419,18 +659,27 @@ footer {
 
 <header>
 <nav class="container">
-  <a class="logo" href="#home">ALIXEN.</a>
 
-  <button class="menu" id="menuButton">MENU</button>
+  <a class="logo" href="#home">
+    ALIXEN.
+    <small>CYBERSECURITY</small>
+  </a>
+
+  <button class="menu" id="menuButton" aria-label="Toggle navigation">
+    MENU
+  </button>
 
   <ul class="nav-links" id="navLinks">
     <li><a href="#home">HOME</a></li>
     <li><a href="#about">ABOUT</a></li>
     <li><a href="#skills">SKILLS</a></li>
+    <li><a href="#tools">TOOLS</a></li>
+    <li><a href="#pentest">PENTEST</a></li>
     <li><a href="#projects">PROJECTS</a></li>
     <li><a href="#certificates">CERTIFICATES</a></li>
     <li><a href="#contact">CONTACT</a></li>
   </ul>
+
 </nav>
 </header>
 
@@ -440,8 +689,9 @@ footer {
 
 <section class="container hero" id="home">
 
-<div>
-  <div class="eyebrow">GLOBAL CYBER INTELLIGENCE</div>
+<div class="reveal">
+
+  <div class="eyebrow">GLOBAL CYBER INTELLIGENCE / 001</div>
 
   <h1>
     I'M<br>
@@ -452,25 +702,29 @@ footer {
     <span id="typingText"></span><span class="cursor">|</span>
   </div>
 
-  <div class="status">● LEARNING / BUILDING / EVOLVING</div>
+  <div class="status">
+    <span class="status-dot"></span>
+    LEARNING / BUILDING / EVOLVING
+  </div>
 
   <p class="description">
-    I am ADGEOKE AL-HASSAN ADETOLA, known as ALIXEN.
-    I am a cybersecurity learner passionate about technology,
-    networking, Linux, ethical hacking and digital defence.
-    Welcome to my digital world.
+    I am ADEGOKE AL-HASSAN ADETOLA, known digitally as ALIXEN.
+    A cybersecurity student passionate about ethical hacking,
+    penetration testing, Linux, networking, web security and
+    digital defence. I believe in learning by building and
+    protecting technology through responsible security practices.
   </p>
 
   <a class="btn primary" href="#projects">EXPLORE MY WORK ↗</a>
 
-  <a class="btn"
-     href="mailto:adetolaadegoke59@gmail.com?subject=Hello%20ALIXEN">
-     CONTACT ME ↗
-  </a>
+  <a class="btn secondary" href="#contact">CONTACT ME ↗</a>
+
 </div>
 
-<div class="globe-panel">
+<div class="globe-panel reveal">
+
   <div class="globe-label">GLOBAL NETWORK / 3D EARTH</div>
+
   <div id="globe"></div>
 
   <div class="globe-fallback" id="globeFallback">
@@ -481,6 +735,7 @@ footer {
     <span>GLOBAL CONNECTIONS</span>
     <span>NETWORK VISUALIZATION</span>
   </div>
+
 </div>
 
 </section>
@@ -491,35 +746,58 @@ footer {
 <div class="container">
 
   <div class="section-label">01 / IDENTITY</div>
-  <h2 class="section-title">ABOUT <span class="cyan">ALIXEN</span></h2>
+
+  <h2 class="section-title">
+    ABOUT <span class="cyan">ALIXEN</span>
+  </h2>
 
   <div class="about-grid">
 
-    <div class="panel">
-      <p>
-        My name is ADGEOKE AL-HASSAN ADETOLA.
-        My digital identity is ALIXEN.
+    <div class="panel reveal">
 
-        I am currently learning and building my skills in
-        cybersecurity, exploring networking, Linux, web security
-        and ethical hacking concepts.
+      <p>
+        My name is ADEGOKE AL-HASSAN ADETOLA.
+        My digital identity is ALIXEN.
       </p>
 
       <br>
 
       <p>
-        My goal is to develop strong technical knowledge,
-        gain practical experience and become a responsible
-        cybersecurity professional.
+        I am studying Cybersecurity and developing my
+        technical skills through hands-on learning,
+        cybersecurity labs, networking exercises and
+        Linux practice.
       </p>
+
+      <br>
+
+      <p>
+        I am particularly interested in ethical hacking,
+        penetration testing, vulnerability assessment
+        and web application security.
+      </p>
+
+      <br>
+
+      <p>
+        My mission is to develop practical experience,
+        understand how systems can be secured and become
+        a responsible cybersecurity professional.
+      </p>
+
     </div>
 
-    <div class="panel terminal">
-      &gt; NAME: <span>ADGEOKE AL-HASSAN ADETOLA</span><br>
+    <div class="panel terminal reveal">
+
+      &gt; NAME: <span>ADEGOKE AL-HASSAN ADETOLA</span><br>
       &gt; ALIAS: <span>ALIXEN</span><br>
       &gt; FIELD: <span>CYBERSECURITY</span><br>
-      &gt; LEVEL: <span>LEARNING / BUILDING</span><br>
-      &gt; MISSION: <span>LEARN. BUILD. PROTECT.</span>
+      &gt; INTEREST: <span>ETHICAL HACKING</span><br>
+      &gt; FOCUS: <span>WEB / NETWORK SECURITY</span><br>
+      &gt; OS: <span>WINDOWS / KALI LINUX</span><br>
+      &gt; MISSION: <span>LEARN. BUILD. PROTECT.</span><br>
+      &gt; STATUS: <span>CONTINUOUS LEARNING</span>
+
     </div>
 
   </div>
@@ -532,47 +810,312 @@ footer {
 <div class="container">
 
   <div class="section-label">02 / CAPABILITIES</div>
-  <h2 class="section-title">MY <span class="cyan">SKILLS</span></h2>
+
+  <h2 class="section-title">
+    TECHNICAL <span class="cyan">SKILLS</span>
+  </h2>
+
+  <p class="section-intro">
+    Areas I am studying and developing through practical exercises
+    and cybersecurity learning.
+  </p>
 
   <div class="grid">
 
-    <div class="card">
+    <div class="card reveal">
       <div class="icon">⌘</div>
       <h3>NETWORKING</h3>
-      <p>Learning IP addressing, network structures and communication protocols.</p>
+      <p>IP addressing, network structures, protocols and connectivity fundamentals.</p>
+      <span class="chip">NETWORK BASICS</span>
     </div>
 
-    <div class="card">
+    <div class="card reveal">
       <div class="icon">⌬</div>
       <h3>CYBERSECURITY</h3>
-      <p>Studying security fundamentals and digital protection.</p>
+      <p>Security fundamentals, threat awareness and digital protection.</p>
+      <span class="chip">SECURITY</span>
     </div>
 
-    <div class="card">
+    <div class="card reveal">
       <div class="icon">▣</div>
       <h3>LINUX</h3>
-      <p>Practising Linux terminal commands and system basics.</p>
+      <p>Terminal navigation, file management and command-line practice.</p>
+      <span class="chip">KALI LINUX</span>
     </div>
 
-    <div class="card">
+    <div class="card reveal">
       <div class="icon">⌨</div>
       <h3>WEB SECURITY</h3>
-      <p>Exploring website architecture and security concepts.</p>
+      <p>Web application architecture, HTTP and common security weaknesses.</p>
+      <span class="chip">OWASP</span>
     </div>
 
-    <div class="card">
+    <div class="card reveal">
       <div class="icon">◎</div>
       <h3>CTF CHALLENGES</h3>
-      <p>Building problem-solving skills through authorised challenges.</p>
+      <p>Developing problem-solving and security analysis skills through authorised labs.</p>
+      <span class="chip">CTF</span>
     </div>
 
-    <div class="card">
+    <div class="card reveal">
       <div class="icon">◈</div>
-      <h3>RESEARCH</h3>
-      <p>Documenting cybersecurity topics and technologies.</p>
+      <h3>SECURITY RESEARCH</h3>
+      <p>Studying security concepts, documenting findings and researching technologies.</p>
+      <span class="chip">RESEARCH</span>
     </div>
 
   </div>
+
+</div>
+</section>
+
+<!-- TOOLS -->
+
+<section id="tools">
+<div class="container">
+
+  <div class="section-label">03 / TECHNOLOGY STACK</div>
+
+  <h2 class="section-title">
+    TOOLS & <span class="cyan">TECHNOLOGIES</span>
+  </h2>
+
+  <p class="section-intro">
+    Tools I use or am learning as part of my cybersecurity journey.
+  </p>
+
+  <div class="grid">
+
+    <div class="card tool-card reveal">
+      <div class="tool-symbol">⌘</div>
+      <h3>KALI LINUX</h3>
+      <span class="chip">LEARNING</span>
+    </div>
+
+    <div class="card tool-card reveal">
+      <div class="tool-symbol">⌕</div>
+      <h3>NMAP</h3>
+      <span class="chip">LEARNING</span>
+    </div>
+
+    <div class="card tool-card reveal">
+      <div class="tool-symbol">◉</div>
+      <h3>BURP SUITE</h3>
+      <span class="chip">LEARNING</span>
+    </div>
+
+    <div class="card tool-card reveal">
+      <div class="tool-symbol">⌬</div>
+      <h3>WIRESHARK</h3>
+      <span class="chip">STUDYING</span>
+    </div>
+
+    <div class="card tool-card reveal">
+      <div class="tool-symbol">⌨</div>
+      <h3>GIT & GITHUB</h3>
+      <span class="chip">PRACTICE</span>
+    </div>
+
+    <div class="card tool-card reveal">
+      <div class="tool-symbol">◈</div>
+      <h3>VIRTUALBOX</h3>
+      <span class="chip">PRACTICE</span>
+    </div>
+
+    <div class="card tool-card reveal">
+      <div class="tool-symbol">◎</div>
+      <h3>PYTHON</h3>
+      <span class="chip">LEARNING</span>
+    </div>
+
+    <div class="card tool-card reveal">
+      <div class="tool-symbol">◇</div>
+      <h3>OWASP</h3>
+      <span class="chip">STUDYING</span>
+    </div>
+
+    <div class="card tool-card reveal">
+      <div class="tool-symbol">▤</div>
+      <h3>WINDOWS</h3>
+      <span class="chip">PRACTICE</span>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- PENETRATION TESTING -->
+
+<section id="pentest">
+<div class="container">
+
+  <div class="section-label">04 / SECURITY OPERATIONS</div>
+
+  <h2 class="section-title">
+    PENETRATION <span class="cyan">TESTING</span>
+  </h2>
+
+  <p class="section-intro">
+    My learning journey into authorised security assessments,
+    vulnerability identification and responsible remediation.
+  </p>
+
+  <div class="pentest-banner reveal">
+
+    <h3>ETHICAL HACKING & SECURITY ASSESSMENT</h3>
+
+    <p>
+      Penetration testing involves assessing systems within an
+      authorised scope to identify security weaknesses and
+      recommend improvements. My focus is on understanding
+      security methodology, conducting controlled lab exercises
+      and documenting findings professionally.
+    </p>
+
+    <span class="chip">RECONNAISSANCE</span>
+    <span class="chip">VULNERABILITY ASSESSMENT</span>
+    <span class="chip">WEB SECURITY</span>
+    <span class="chip">REPORTING</span>
+
+  </div>
+
+  <div class="grid">
+
+    <div class="card reveal">
+
+      <div class="project-number">01</div>
+
+      <h3>NETWORK RECONNAISSANCE</h3>
+
+      <p>
+        Learning network discovery, service identification
+        and basic network analysis using Nmap in authorised labs.
+      </p>
+
+      <ul class="lab-list">
+        <li>Understanding IP addresses</li>
+        <li>Studying ports and services</li>
+        <li>Learning scan result interpretation</li>
+        <li>Documenting observations</li>
+      </ul>
+
+      <span class="project-status learning">LEARNING</span>
+
+    </div>
+
+    <div class="card reveal">
+
+      <div class="project-number">02</div>
+
+      <h3>WEB APPLICATION SECURITY</h3>
+
+      <p>
+        Studying web application security and common
+        vulnerabilities using intentionally vulnerable
+        training environments.
+      </p>
+
+      <ul class="lab-list">
+        <li>HTTP request and response concepts</li>
+        <li>Authentication security</li>
+        <li>Input validation concepts</li>
+        <li>OWASP Top 10 study</li>
+      </ul>
+
+      <span class="project-status learning">LEARNING</span>
+
+    </div>
+
+    <div class="card reveal">
+
+      <div class="project-number">03</div>
+
+      <h3>BURP SUITE PRACTICE</h3>
+
+      <p>
+        Exploring web traffic inspection and application
+        security testing in controlled training labs.
+      </p>
+
+      <ul class="lab-list">
+        <li>HTTP interception concepts</li>
+        <li>Request and response analysis</li>
+        <li>Proxy configuration</li>
+        <li>Security observations</li>
+      </ul>
+
+      <span class="project-status learning">LEARNING</span>
+
+    </div>
+
+    <div class="card reveal">
+
+      <div class="project-number">04</div>
+
+      <h3>OWASP TOP 10</h3>
+
+      <p>
+        Studying common web application security risks
+        and understanding how developers can prevent them.
+      </p>
+
+      <ul class="lab-list">
+        <li>Access control concepts</li>
+        <li>Cryptographic failures</li>
+        <li>Injection risks</li>
+        <li>Security misconfiguration</li>
+      </ul>
+
+      <span class="project-status learning">STUDYING</span>
+
+    </div>
+
+    <div class="card reveal">
+
+      <div class="project-number">05</div>
+
+      <h3>VULNERABILITY ASSESSMENT</h3>
+
+      <p>
+        Learning how to recognise, classify and document
+        security weaknesses in authorised environments.
+      </p>
+
+      <ul class="lab-list">
+        <li>Understanding risk levels</li>
+        <li>Recording findings</li>
+        <li>Assessing potential impact</li>
+        <li>Recommending remediation</li>
+      </ul>
+
+      <span class="project-status learning">LEARNING</span>
+
+    </div>
+
+    <div class="card reveal">
+
+      <div class="project-number">06</div>
+
+      <h3>SECURITY REPORTING</h3>
+
+      <p>
+        Developing the ability to communicate security
+        observations in a clear and professional format.
+      </p>
+
+      <ul class="lab-list">
+        <li>Executive summaries</li>
+        <li>Evidence documentation</li>
+        <li>Risk classification</li>
+        <li>Remediation recommendations</li>
+      </ul>
+
+      <span class="project-status learning">LEARNING</span>
+
+    </div>
+
+  </div>
+
 </div>
 </section>
 
@@ -581,33 +1124,142 @@ footer {
 <section id="projects">
 <div class="container">
 
-  <div class="section-label">03 / DEVELOPMENT</div>
-  <h2 class="section-title">MY <span class="cyan">PROJECTS</span></h2>
+  <div class="section-label">05 / DEVELOPMENT</div>
+
+  <h2 class="section-title">
+    PRACTICAL <span class="cyan">PROJECTS</span>
+  </h2>
+
+  <p class="section-intro">
+    A collection of my technical learning activities,
+    cybersecurity exercises and development work.
+  </p>
 
   <div class="grid">
 
-    <div class="card">
-      <div class="icon">01</div>
+    <div class="card reveal">
+      <div class="project-number">01</div>
       <h3>LINUX PRACTICE</h3>
-      <p>Linux learning exercises and terminal practice.</p>
+      <p>
+        Learning Linux commands, terminal navigation,
+        file permissions and system fundamentals.
+      </p>
       <span class="chip">LINUX</span>
+      <span class="project-status learning">IN PROGRESS</span>
     </div>
 
-    <div class="card">
-      <div class="icon">02</div>
+    <div class="card reveal">
+      <div class="project-number">02</div>
       <h3>NETWORK STUDY</h3>
-      <p>Networking fundamentals and study documentation.</p>
+      <p>
+        Studying IP addressing, network protocols,
+        connectivity and network architecture.
+      </p>
       <span class="chip">NETWORKING</span>
+      <span class="project-status learning">IN PROGRESS</span>
     </div>
 
-    <div class="card">
-      <div class="icon">03</div>
+    <div class="card reveal">
+      <div class="project-number">03</div>
       <h3>CTF LEARNING</h3>
-      <p>Lessons from authorised cybersecurity challenges.</p>
+      <p>
+        Building security problem-solving skills
+        through authorised cybersecurity challenges.
+      </p>
       <span class="chip">CTF</span>
+      <span class="project-status learning">IN PROGRESS</span>
+    </div>
+
+    <div class="card reveal">
+      <div class="project-number">04</div>
+      <h3>ALIXEN PORTFOLIO</h3>
+      <p>
+        Developing a personal cybersecurity portfolio
+        using HTML, CSS, JavaScript and GitHub Pages.
+      </p>
+      <span class="chip">HTML</span>
+      <span class="chip">CSS</span>
+      <span class="chip">GITHUB</span>
+      <span class="project-status done">BUILT</span>
+    </div>
+
+    <div class="card reveal">
+      <div class="project-number">05</div>
+      <h3>WEB SECURITY LAB</h3>
+      <p>
+        Planned practical exercises exploring
+        web security concepts in a controlled environment.
+      </p>
+      <span class="chip">WEB SECURITY</span>
+      <span class="project-status">PLANNED</span>
+    </div>
+
+    <div class="card reveal">
+      <div class="project-number">06</div>
+      <h3>PENTEST REPORT LAB</h3>
+      <p>
+        Building a professional security assessment
+        report based on authorised training exercises.
+      </p>
+      <span class="chip">REPORTING</span>
+      <span class="project-status">PLANNED</span>
     </div>
 
   </div>
+</div>
+</section>
+
+<!-- REPORTING -->
+
+<section id="reports">
+<div class="container">
+
+  <div class="section-label">06 / DOCUMENTATION</div>
+
+  <h2 class="section-title">
+    SECURITY <span class="cyan">REPORTING</span>
+  </h2>
+
+  <p class="section-intro">
+    A professional security assessment report should explain
+    what was assessed, what was found and how issues can be fixed.
+  </p>
+
+  <div class="report-box reveal">
+
+    <strong>ALIXEN SECURITY REPORT TEMPLATE</strong><br>
+    --------------------------------------------<br>
+    ASSESSMENT: Authorised lab assessment<br>
+    TARGET: Training environment<br>
+    DATE: To be recorded after testing<br>
+    <br>
+    <strong>1. EXECUTIVE SUMMARY</strong><br>
+    Brief overview of the assessment.<br>
+    <br>
+    <strong>2. SCOPE</strong><br>
+    Systems and applications authorised for testing.<br>
+    <br>
+    <strong>3. METHODOLOGY</strong><br>
+    Assessment approach and tools used.<br>
+    <br>
+    <strong>4. FINDINGS</strong><br>
+    Evidence, description and risk classification.<br>
+    <br>
+    <strong>5. REMEDIATION</strong><br>
+    Recommended security improvements.<br>
+    <br>
+    <strong>6. CONCLUSION</strong><br>
+    Summary of results and next steps.<br>
+    --------------------------------------------
+
+  </div>
+
+  <p class="contact-note">
+    Note: This is a report template, not a completed penetration
+    testing report. Actual findings and evidence will be added
+    after authorised lab assessments.
+  </p>
+
 </div>
 </section>
 
@@ -616,12 +1268,21 @@ footer {
 <section id="certificates">
 <div class="container">
 
-  <div class="section-label">04 / ACHIEVEMENTS</div>
-  <h2 class="section-title">MY <span class="cyan">CERTIFICATES</span></h2>
+  <div class="section-label">07 / ACHIEVEMENTS</div>
+
+  <h2 class="section-title">
+    MY <span class="cyan">CERTIFICATES</span>
+  </h2>
+
+  <p class="section-intro">
+    Certificates and learning achievements.
+    Select an image to view it in full size.
+  </p>
 
   <div class="grid">
 
-    <div class="card">
+    <div class="card reveal">
+
       <img
         class="certificate-image"
         src="certificates/bcs-ctf-2026.jpg"
@@ -633,14 +1294,16 @@ footer {
 
       <div class="missing-image">
         BCS CTF IMAGE NOT FOUND.<br>
-        Check the uploaded filename.
+        CHECK CERTIFICATE FOLDER.
       </div>
 
       <h3>BCS CTF 2026</h3>
       <p>Bangladesh Computer Society — Participation.</p>
+
     </div>
 
-    <div class="card">
+    <div class="card reveal">
+
       <img
         class="certificate-image"
         src="certificates/hackviser-core.jpg"
@@ -652,14 +1315,16 @@ footer {
 
       <div class="missing-image">
         HACKVISER IMAGE NOT FOUND.<br>
-        Check the uploaded filename.
+        CHECK CERTIFICATE FOLDER.
       </div>
 
       <h3>HACKVISER CORE</h3>
       <p>Cybersecurity Foundations.</p>
+
     </div>
 
-    <div class="card">
+    <div class="card reveal">
+
       <img
         class="certificate-image"
         src="certificates/10-minute-school.jpg"
@@ -671,11 +1336,12 @@ footer {
 
       <div class="missing-image">
         10 MINUTE SCHOOL IMAGE NOT FOUND.<br>
-        Check the uploaded filename.
+        CHECK CERTIFICATE FOLDER.
       </div>
 
       <h3>10 MINUTE SCHOOL</h3>
       <p>Bengali Debate — Course completion.</p>
+
     </div>
 
   </div>
@@ -687,27 +1353,36 @@ footer {
 <section id="contact">
 <div class="container">
 
-  <div class="section-label">05 / CONNECTION</div>
-  <h2 class="section-title">CONTACT <span class="cyan">ALIXEN</span></h2>
+  <div class="section-label">08 / CONNECTION</div>
+
+  <h2 class="section-title">
+    CONTACT <span class="cyan">ALIXEN</span>
+  </h2>
 
   <div class="contact-grid">
 
-    <div class="panel">
+    <div class="panel reveal">
+
       <h3 class="cyan">LET'S CONNECT.</h3>
+
       <br>
+
       <p>
-        Have an opportunity, project idea or cybersecurity question?
-        Send me an email.
+        Have an opportunity, collaboration idea,
+        project or cybersecurity question?
+        Feel free to reach out.
       </p>
+
       <br>
 
       <a class="btn primary"
-         href="mailto:adetolaadegoke59@gmail.com?subject=Hello%20ALIXEN&body=Hello%20Adgeoke,">
+         href="mailto:adetolaadegoke59@gmail.com?subject=Hello%20ALIXEN">
          SEND EMAIL ↗
       </a>
+
     </div>
 
-    <div class="panel">
+    <div class="panel reveal">
 
       <a class="contact-link"
          href="mailto:adetolaadegoke59@gmail.com">
@@ -717,26 +1392,46 @@ footer {
       <a class="contact-link"
          href="https://github.com/adetolaadegoke"
          target="_blank"
-         rel="noopener">
+         rel="noopener noreferrer">
          ◈ GITHUB PROFILE ↗
       </a>
+
+      <a class="contact-link"
+         href="https://github.com/adetolaadegoke/alixen-cyber-portfolio"
+         target="_blank"
+         rel="noopener noreferrer">
+         ◈ PORTFOLIO REPOSITORY ↗
+      </a>
+
+      <p class="contact-note">
+        Open to learning opportunities, cybersecurity communities
+        and responsible technical collaboration.
+      </p>
 
     </div>
 
   </div>
+
 </div>
 </section>
 
 </main>
 
 <footer>
-  © <span id="year"></span> ALIXEN
-  <p style="margin-top:8px">
-    ADGEOKE AL-HASSAN ADETOLA · LEARN. BUILD. PROTECT.
+
+  <div class="footer-logo">ALIXEN.</div>
+
+  <p>© <span id="year"></span> ADEGOKE AL-HASSAN ADETOLA</p>
+
+  <p>LEARN. BUILD. PROTECT.</p>
+
+  <p style="margin-top:10px">
+    Built with curiosity and a passion for cybersecurity.
   </p>
+
 </footer>
 
-<!-- CERTIFICATE MODAL -->
+<!-- CERTIFICATE PREVIEW -->
 
 <div class="modal" id="certificateModal"
      onclick="closeCertificate()">
@@ -754,26 +1449,34 @@ footer {
 document.getElementById("year").textContent =
   new Date().getFullYear();
 
-/* MOBILE MENU */
 
-document.getElementById("menuButton").addEventListener("click", () => {
-  document.getElementById("navLinks").classList.toggle("show");
+/* MOBILE NAVIGATION */
+
+const menuButton = document.getElementById("menuButton");
+const navLinks = document.getElementById("navLinks");
+
+menuButton.addEventListener("click", () => {
+  const opened = navLinks.classList.toggle("show");
+  menuButton.setAttribute("aria-expanded", opened);
 });
 
 document.querySelectorAll("#navLinks a").forEach(link => {
   link.addEventListener("click", () => {
-    document.getElementById("navLinks").classList.remove("show");
+    navLinks.classList.remove("show");
+    menuButton.setAttribute("aria-expanded", "false");
   });
 });
 
-/* DYNAMIC TYPING */
+
+/* TYPING ANIMATION */
 
 const phrases = [
   "CYBERSECURITY ENTHUSIAST",
   "ETHICAL HACKING LEARNER",
+  "PENETRATION TESTING STUDENT",
   "NETWORKING EXPLORER",
-  "DIGITAL DEFENCE BUILDER",
-  "FUTURE SECURITY PROFESSIONAL"
+  "WEB SECURITY RESEARCHER",
+  "DIGITAL DEFENCE BUILDER"
 ];
 
 let phraseIndex = 0;
@@ -813,6 +1516,27 @@ function typingEffect() {
 
 typingEffect();
 
+
+/* SCROLL REVEAL */
+
+const revealObserver = new IntersectionObserver(entries => {
+
+  entries.forEach(entry => {
+
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      revealObserver.unobserve(entry.target);
+    }
+
+  });
+
+},{threshold:0.12});
+
+document.querySelectorAll(".reveal").forEach(element => {
+  revealObserver.observe(element);
+});
+
+
 /* CERTIFICATE IMAGE FALLBACK */
 
 function tryNextCertificate(img) {
@@ -822,7 +1546,6 @@ function tryNextCertificate(img) {
   if (img.dataset.triedRoot !== "yes") {
 
     img.dataset.triedRoot = "yes";
-
     img.src = filename;
 
     return;
@@ -836,6 +1559,7 @@ function tryNextCertificate(img) {
     placeholder.style.display = "flex";
   }
 }
+
 
 /* CERTIFICATE MODAL */
 
@@ -864,6 +1588,7 @@ document.addEventListener("keydown", event => {
 
 });
 
+
 /* 3D GLOBE */
 
 const globeContainer = document.getElementById("globe");
@@ -872,8 +1597,10 @@ const globeFallback = document.getElementById("globeFallback");
 function createGlobe() {
 
   if (typeof Globe === "undefined") {
+
     globeFallback.style.display = "flex";
     globeFallback.textContent = "GLOBE LIBRARY UNAVAILABLE";
+
     return;
   }
 
@@ -894,36 +1621,42 @@ function createGlobe() {
       .showGraticules(true)
 
       .arcsData([
+
         {
           startLat:6.5244,
           startLng:3.3792,
           endLat:51.5072,
           endLng:-0.1276
         },
+
         {
           startLat:6.5244,
           startLng:3.3792,
           endLat:40.7128,
           endLng:-74.006
         },
+
         {
           startLat:6.5244,
           startLng:3.3792,
           endLat:35.6762,
           endLng:139.6503
         },
+
         {
           startLat:51.5072,
           startLng:-0.1276,
           endLat:35.6762,
           endLng:139.6503
         },
+
         {
           startLat:40.7128,
           startLng:-74.006,
           endLat:-1.2921,
           endLng:36.8219
         }
+
       ])
 
       .arcColor(() => "#00eaff")
@@ -934,11 +1667,13 @@ function createGlobe() {
       .arcDashAnimateTime(2500)
 
       .pointsData([
+
         {lat:6.5244,lng:3.3792},
         {lat:51.5072,lng:-0.1276},
         {lat:40.7128,lng:-74.006},
         {lat:35.6762,lng:139.6503},
         {lat:-1.2921,lng:36.8219}
+
       ])
 
       .pointColor(() => "#00eaff")
@@ -959,8 +1694,10 @@ function createGlobe() {
     },1000);
 
     window.addEventListener("resize", () => {
+
       globe.width(globeContainer.clientWidth);
       globe.height(globeContainer.clientHeight);
+
     });
 
   } catch(error) {
@@ -972,7 +1709,10 @@ function createGlobe() {
   }
 }
 
-createGlobe();
+
+/* START GLOBE AFTER PAGE LOAD */
+
+window.addEventListener("load", createGlobe);
 
 </script>
 
