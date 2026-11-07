@@ -6,453 +6,411 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#03070c">
 
-<title>ALIXEN | Cyber Intelligence</title>
-<meta name="description" content="ADGEOKE AL-HASSAN ADETOLA — ALIXEN Cybersecurity Portfolio">
+<title>ALIXEN | Cybersecurity Portfolio</title>
+<meta name="description" content="ADGEOKE AL-HASSAN ADETOLA - ALIXEN Cybersecurity Portfolio">
 
-<!-- 3D Globe Library -->
+<!-- 3D Globe library -->
 <script src="https://unpkg.com/globe.gl"></script>
 
 <style>
 :root {
-  --black: #03070c;
-  --panel: #08121d;
-  --cyan: #00eaff;
-  --white: #eafaff;
-  --muted: #8ba5b5;
-  --line: rgba(0,234,255,.22);
+  --bg:#03070c;
+  --panel:#091521;
+  --cyan:#00eaff;
+  --white:#eafaff;
+  --muted:#91a7b8;
+  --line:rgba(0,234,255,.25);
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-html { scroll-behavior: smooth; }
+html {scroll-behavior:smooth}
 
 body {
-  background: var(--black);
-  color: var(--white);
-  font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
+  background:var(--bg);
+  color:var(--white);
+  font-family:Arial,sans-serif;
+  overflow-x:hidden;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
+body:before {
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
   background-image:
-    linear-gradient(rgba(0,234,255,.035) 1px, transparent 1px),
+    linear-gradient(rgba(0,234,255,.035) 1px,transparent 1px),
     linear-gradient(90deg,rgba(0,234,255,.035) 1px,transparent 1px);
-  background-size: 40px 40px;
+  background-size:40px 40px;
 }
 
-a { text-decoration: none; color: inherit; }
-
-.container {
-  width: min(1200px, 91%);
-  margin: auto;
-}
-
-.cyan { color: var(--cyan); }
+a {text-decoration:none;color:inherit}
+.container {width:min(1200px,92%);margin:auto}
+.cyan {color:var(--cyan)}
 
 /* NAVIGATION */
 
 header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(3,7,12,.94);
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid var(--line);
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(3,7,12,.95);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--line);
 }
 
 nav {
-  height: 75px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  height:75px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
 .logo {
-  color: var(--cyan);
-  font-size: 27px;
-  font-weight: 1000;
-  letter-spacing: 5px;
-  text-shadow: 0 0 20px var(--cyan);
+  color:var(--cyan);
+  font-size:27px;
+  font-weight:1000;
+  letter-spacing:5px;
+  text-shadow:0 0 20px var(--cyan);
 }
 
 .nav-links {
-  display: flex;
-  gap: 25px;
-  list-style: none;
+  display:flex;
+  gap:22px;
+  list-style:none;
 }
 
 .nav-links a {
-  color: var(--muted);
-  font-size: 12px;
-  letter-spacing: 1px;
-  transition: .3s;
+  font-size:12px;
+  color:var(--muted);
 }
 
-.nav-links a:hover { color: var(--cyan); }
+.nav-links a:hover {color:var(--cyan)}
 
 .menu {
-  display: none;
-  background: transparent;
-  color: var(--cyan);
-  border: 1px solid var(--cyan);
-  padding: 9px 13px;
+  display:none;
+  background:transparent;
+  color:var(--cyan);
+  border:1px solid var(--cyan);
+  padding:10px;
 }
 
 /* HERO */
 
 .hero {
-  min-height: 690px;
-  display: grid;
-  grid-template-columns: 1fr 1.05fr;
-  gap: 35px;
-  align-items: center;
-  padding-top: 65px;
-  padding-bottom: 65px;
+  min-height:690px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:35px;
+  padding-top:65px;
+  padding-bottom:65px;
 }
 
 .eyebrow {
-  color: var(--cyan);
-  font: 12px monospace;
-  letter-spacing: 4px;
-  margin-bottom: 25px;
+  color:var(--cyan);
+  font:12px monospace;
+  letter-spacing:4px;
+  margin-bottom:25px;
 }
 
 h1 {
-  font-size: clamp(55px,8vw,100px);
-  line-height: .94;
-  letter-spacing: -5px;
+  font-size:clamp(55px,8vw,100px);
+  line-height:.95;
+  letter-spacing:-5px;
 }
 
 h1 span {
-  color: var(--cyan);
-  text-shadow: 0 0 35px rgba(0,234,255,.45);
+  color:var(--cyan);
+  text-shadow:0 0 30px #00eaff70;
 }
 
-.typing-line {
-  min-height: 35px;
-  margin: 22px 0;
-  color: var(--cyan);
-  font: 17px monospace;
+.typing {
+  min-height:35px;
+  color:var(--cyan);
+  font:17px monospace;
+  margin:22px 0;
 }
 
-.cursor {
-  animation: blink .7s infinite;
-}
+.cursor {animation:blink .7s infinite}
 
 @keyframes blink {
-  50% { opacity: 0; }
+  50% {opacity:0}
 }
 
-.hero-description {
-  color: var(--muted);
-  line-height: 1.9;
-  max-width: 520px;
-  margin: 20px 0 28px;
+.description {
+  color:var(--muted);
+  line-height:1.9;
+  margin:20px 0 25px;
 }
 
 .status {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--cyan);
-  border: 1px solid var(--line);
-  padding: 9px 15px;
-  font: 11px monospace;
-  background: rgba(0,234,255,.04);
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--cyan);
-  border-radius: 50%;
-  box-shadow: 0 0 12px var(--cyan);
-}
-
-.buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  display:inline-block;
+  border:1px solid var(--line);
+  color:var(--cyan);
+  padding:10px 15px;
+  font:11px monospace;
 }
 
 .btn {
-  display: inline-block;
-  padding: 13px 20px;
-  border: 1px solid var(--cyan);
-  color: var(--cyan);
-  font-size: 12px;
-  font-weight: bold;
-  transition: .3s;
-  cursor: pointer;
+  display:inline-block;
+  border:1px solid var(--cyan);
+  color:var(--cyan);
+  padding:13px 19px;
+  margin:5px 8px 5px 0;
+  font-size:12px;
+  font-weight:bold;
+  transition:.3s;
 }
 
 .btn.primary {
-  background: var(--cyan);
-  color: #001018;
+  background:var(--cyan);
+  color:#001018;
 }
 
 .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 25px rgba(0,234,255,.4);
+  box-shadow:0 0 25px #00eaff60;
+  transform:translateY(-3px);
 }
 
-/* 3D GLOBE */
+/* GLOBE */
 
 .globe-panel {
-  position: relative;
-  height: 510px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  background: radial-gradient(ellipse,#092435,#03070c 75%);
-  box-shadow: 0 0 55px rgba(0,234,255,.07);
+  position:relative;
+  height:500px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:radial-gradient(ellipse,#092738,#03070c 75%);
 }
 
-.globe-heading {
-  position: absolute;
-  z-index: 5;
-  top: 18px;
-  left: 18px;
-  color: var(--cyan);
-  font: 11px monospace;
-  letter-spacing: 2px;
+.globe-label {
+  position:absolute;
+  top:18px;
+  left:18px;
+  z-index:5;
+  color:var(--cyan);
+  font:11px monospace;
+  letter-spacing:2px;
 }
 
 #globe {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  z-index: 2;
+  width:100%;
+  height:100%;
 }
 
 .globe-footer {
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
-  right: 15px;
-  z-index: 5;
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  color: var(--cyan);
-  font: 9px monospace;
-  letter-spacing: 1px;
+  position:absolute;
+  bottom:15px;
+  left:15px;
+  right:15px;
+  display:flex;
+  justify-content:space-between;
+  color:var(--cyan);
+  font:9px monospace;
+  z-index:5;
 }
 
 .globe-fallback {
-  display: none;
-  position: absolute;
-  inset: 0;
-  align-items: center;
-  justify-content: center;
-  color: var(--cyan);
-  text-align: center;
-  font: 13px monospace;
+  display:none;
+  position:absolute;
+  inset:0;
+  align-items:center;
+  justify-content:center;
+  color:var(--cyan);
+  text-align:center;
+  font:13px monospace;
 }
 
-/* GENERAL SECTIONS */
+/* SECTIONS */
 
-section { padding: 95px 0; }
+section {padding:90px 0}
 
 .section-label {
-  color: var(--cyan);
-  font: 12px monospace;
-  letter-spacing: 3px;
+  color:var(--cyan);
+  font:12px monospace;
+  letter-spacing:3px;
 }
 
 .section-title {
-  font-size: clamp(32px,5vw,53px);
-  margin: 12px 0 38px;
+  font-size:clamp(32px,5vw,52px);
+  margin:12px 0 35px;
 }
 
-.panel, .card {
-  background: linear-gradient(145deg,#0a1925,#050b12);
-  border: 1px solid var(--line);
-  padding: 27px;
-  transition: .3s;
+.panel,.card {
+  background:linear-gradient(145deg,#0b1925,#050b12);
+  border:1px solid var(--line);
+  padding:25px;
+  transition:.3s;
 }
 
-.panel p, .card p {
-  color: var(--muted);
-  line-height: 1.9;
-}
-
-.card:hover {
-  border-color: var(--cyan);
-  transform: translateY(-5px);
-  box-shadow: 0 12px 35px rgba(0,234,255,.08);
+.panel p,.card p {
+  color:var(--muted);
+  line-height:1.85;
 }
 
 .about-grid {
-  display: grid;
-  grid-template-columns: 1.2fr .8fr;
-  gap: 20px;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:20px;
 }
 
 .terminal {
-  color: var(--cyan);
-  font: 13px/2 monospace;
-  overflow-wrap: anywhere;
+  color:var(--cyan);
+  font:13px/2 monospace;
+  overflow-wrap:anywhere;
 }
 
-.terminal span { color: var(--muted); }
+.terminal span {color:var(--muted)}
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 18px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.card:hover {
+  border-color:var(--cyan);
+  transform:translateY(-5px);
+  box-shadow:0 0 25px #00eaff18;
 }
 
 .icon {
-  color: var(--cyan);
-  font-size: 30px;
-  margin-bottom: 17px;
+  color:var(--cyan);
+  font-size:30px;
+  margin-bottom:15px;
 }
 
 .card h3 {
-  color: var(--cyan);
-  margin-bottom: 12px;
+  color:var(--cyan);
+  margin-bottom:12px;
 }
 
 .chip {
-  display: inline-block;
-  border: 1px solid var(--line);
-  color: var(--cyan);
-  padding: 5px 9px;
-  font: 10px monospace;
-  margin: 12px 5px 0 0;
+  display:inline-block;
+  border:1px solid var(--line);
+  color:var(--cyan);
+  padding:5px 9px;
+  font:10px monospace;
+  margin-top:12px;
 }
 
 /* CERTIFICATES */
 
 .certificate-image {
-  display: block;
-  width: 100%;
-  height: 200px;
-  object-fit: contain;
-  background: #03070c;
-  border: 1px solid var(--line);
-  margin-bottom: 18px;
-  cursor: zoom-in;
-  transition: .3s;
-}
-
-.certificate-image:hover {
-  border-color: var(--cyan);
-  box-shadow: 0 0 20px #00eaff25;
+  display:block;
+  width:100%;
+  height:210px;
+  object-fit:contain;
+  background:#03070c;
+  border:1px solid var(--line);
+  margin-bottom:17px;
+  cursor:zoom-in;
 }
 
 .missing-image {
-  height: 200px;
-  border: 1px dashed var(--cyan);
-  color: var(--muted);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 15px;
-  margin-bottom: 18px;
-  font: 11px monospace;
+  display:none;
+  height:210px;
+  border:1px dashed var(--cyan);
+  color:var(--cyan);
+  font:12px monospace;
+  text-align:center;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  margin-bottom:17px;
 }
 
-/* CERTIFICATE PREVIEW */
+/* MODAL */
 
 .modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  background: rgba(0,0,0,.96);
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.96);
+  z-index:100;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
 
-.modal.open { display: flex; }
+.modal.open {display:flex}
 
 .modal img {
-  max-width: 95%;
-  max-height: 85vh;
-  object-fit: contain;
-  border: 1px solid var(--cyan);
+  max-width:95%;
+  max-height:85vh;
+  object-fit:contain;
+  border:1px solid var(--cyan);
 }
 
-.modal-close {
-  position: absolute;
-  top: 15px;
-  right: 25px;
-  color: var(--cyan);
-  font-size: 40px;
-  background: none;
-  border: none;
-  cursor: pointer;
+.close {
+  position:absolute;
+  right:25px;
+  top:10px;
+  background:none;
+  border:none;
+  color:var(--cyan);
+  font-size:40px;
+  cursor:pointer;
 }
 
 /* CONTACT */
 
 .contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
 }
 
 .contact-link {
-  display: block;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--line);
-  color: var(--cyan);
-  overflow-wrap: anywhere;
+  display:block;
+  color:var(--cyan);
+  padding:17px 0;
+  border-bottom:1px solid var(--line);
+  overflow-wrap:anywhere;
 }
 
 footer {
-  border-top: 1px solid var(--line);
-  text-align: center;
-  padding: 30px 15px;
-  color: var(--muted);
-  font-size: 12px;
+  text-align:center;
+  padding:30px 15px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:12px;
 }
 
 /* MOBILE */
 
 @media(max-width:850px) {
-  .hero, .about-grid, .contact-grid {
-    grid-template-columns: 1fr;
+  .hero,.about-grid,.contact-grid {
+    grid-template-columns:1fr;
   }
 
-  .grid { grid-template-columns: repeat(2,1fr); }
-
-  .globe-panel { height: 420px; }
-
-  .menu { display: block; }
+  .grid {grid-template-columns:repeat(2,1fr)}
+  .menu {display:block}
 
   .nav-links {
-    display: none;
-    position: absolute;
-    top: 75px;
-    left: 0;
-    right: 0;
-    background: #06111b;
-    border-bottom: 1px solid var(--line);
-    padding: 25px;
-    flex-direction: column;
+    display:none;
+    position:absolute;
+    top:75px;
+    left:0;
+    right:0;
+    background:#06111b;
+    padding:25px;
+    flex-direction:column;
   }
 
-  .nav-links.show { display: flex; }
+  .nav-links.show {display:flex}
 }
 
 @media(max-width:520px) {
-  .grid { grid-template-columns: 1fr; }
-  h1 { letter-spacing: -3px; }
-  .globe-panel { height: 340px; }
-  section { padding: 70px 0; }
+  .grid {grid-template-columns:1fr}
+  .globe-panel {height:340px}
+  h1 {letter-spacing:-3px}
+  section {padding:65px 0}
 }
 </style>
 </head>
@@ -461,7 +419,7 @@ footer {
 
 <header>
 <nav class="container">
-  <a href="#home" class="logo">ALIXEN.</a>
+  <a class="logo" href="#home">ALIXEN.</a>
 
   <button class="menu" id="menuButton">MENU</button>
 
@@ -490,52 +448,41 @@ footer {
     <span>ALIXEN.</span>
   </h1>
 
-  <div class="typing-line">
-    <span id="typing"></span><span class="cursor">|</span>
+  <div class="typing">
+    <span id="typingText"></span><span class="cursor">|</span>
   </div>
 
-  <div class="status">
-    <span class="status-dot"></span>
-    LEARNING / BUILDING / EVOLVING
-  </div>
+  <div class="status">● LEARNING / BUILDING / EVOLVING</div>
 
-  <p class="hero-description">
-    My name is ADGEOKE AL-HASSAN ADETOLA.
+  <p class="description">
+    I am ADGEOKE AL-HASSAN ADETOLA, known as ALIXEN.
     I am a cybersecurity learner passionate about technology,
-    digital security, networking, Linux and ethical hacking.
-
+    networking, Linux, ethical hacking and digital defence.
     Welcome to my digital world.
   </p>
 
-  <div class="buttons">
-    <a href="#projects" class="btn primary">EXPLORE MY WORK ↗</a>
+  <a class="btn primary" href="#projects">EXPLORE MY WORK ↗</a>
 
-    <a href="mailto:adetolaadegoke59@gmail.com?subject=Hello%20ALIXEN"
-       class="btn">CONTACT ME ↗</a>
-  </div>
+  <a class="btn"
+     href="mailto:adetolaadegoke59@gmail.com?subject=Hello%20ALIXEN">
+     CONTACT ME ↗
+  </a>
 </div>
 
-<!-- 3D GLOBE -->
-
 <div class="globe-panel">
-
-  <div class="globe-heading">
-    GLOBAL NETWORK / 3D VISUALIZATION
-  </div>
-
+  <div class="globe-label">GLOBAL NETWORK / 3D EARTH</div>
   <div id="globe"></div>
 
   <div class="globe-fallback" id="globeFallback">
-    ALIXEN GLOBAL NETWORK<br>
-    3D GLOBE LOADING...
+    ALIXEN GLOBAL NETWORK
   </div>
 
   <div class="globe-footer">
     <span>GLOBAL CONNECTIONS</span>
-    <span>ILLUSTRATIVE NETWORK</span>
+    <span>NETWORK VISUALIZATION</span>
   </div>
-
 </div>
+
 </section>
 
 <!-- ABOUT -->
@@ -550,31 +497,28 @@ footer {
 
     <div class="panel">
       <p>
-        I am ADGEOKE AL-HASSAN ADETOLA, known as ALIXEN.
+        My name is ADGEOKE AL-HASSAN ADETOLA.
+        My digital identity is ALIXEN.
 
         I am currently learning and building my skills in
-        cybersecurity. I am interested in understanding how
-        technology works and how digital systems can be protected.
+        cybersecurity, exploring networking, Linux, web security
+        and ethical hacking concepts.
       </p>
 
       <br>
 
       <p>
-        My learning journey includes networking, Linux,
-        cybersecurity fundamentals, web security and ethical
-        hacking concepts.
-
-        My ambition is to continue learning, develop practical
-        skills and become a responsible cybersecurity professional.
+        My goal is to develop strong technical knowledge,
+        gain practical experience and become a responsible
+        cybersecurity professional.
       </p>
     </div>
 
     <div class="panel terminal">
-      &gt; IDENTITY: <span>ALIXEN</span><br>
-      &gt; FULL NAME: <span>ADGEOKE AL-HASSAN ADETOLA</span><br>
+      &gt; NAME: <span>ADGEOKE AL-HASSAN ADETOLA</span><br>
+      &gt; ALIAS: <span>ALIXEN</span><br>
       &gt; FIELD: <span>CYBERSECURITY</span><br>
       &gt; LEVEL: <span>LEARNING / BUILDING</span><br>
-      &gt; INTEREST: <span>DIGITAL SECURITY</span><br>
       &gt; MISSION: <span>LEARN. BUILD. PROTECT.</span>
     </div>
 
@@ -595,37 +539,37 @@ footer {
     <div class="card">
       <div class="icon">⌘</div>
       <h3>NETWORKING</h3>
-      <p>Learning network fundamentals, IP addressing and communication protocols.</p>
+      <p>Learning IP addressing, network structures and communication protocols.</p>
     </div>
 
     <div class="card">
       <div class="icon">⌬</div>
       <h3>CYBERSECURITY</h3>
-      <p>Studying security principles, digital threats and defensive techniques.</p>
+      <p>Studying security fundamentals and digital protection.</p>
     </div>
 
     <div class="card">
       <div class="icon">▣</div>
       <h3>LINUX</h3>
-      <p>Practising Linux commands and understanding operating systems.</p>
+      <p>Practising Linux terminal commands and system basics.</p>
     </div>
 
     <div class="card">
       <div class="icon">⌨</div>
       <h3>WEB SECURITY</h3>
-      <p>Exploring web technologies and common security concepts.</p>
+      <p>Exploring website architecture and security concepts.</p>
     </div>
 
     <div class="card">
       <div class="icon">◎</div>
       <h3>CTF CHALLENGES</h3>
-      <p>Developing problem-solving skills through authorised learning challenges.</p>
+      <p>Building problem-solving skills through authorised challenges.</p>
     </div>
 
     <div class="card">
       <div class="icon">◈</div>
       <h3>RESEARCH</h3>
-      <p>Documenting cybersecurity topics and learning new technologies.</p>
+      <p>Documenting cybersecurity topics and technologies.</p>
     </div>
 
   </div>
@@ -644,32 +588,26 @@ footer {
 
     <div class="card">
       <div class="icon">01</div>
-      <h3>LINUX PRACTICE LAB</h3>
-      <p>My learning exercises involving Linux commands and terminal basics.</p>
+      <h3>LINUX PRACTICE</h3>
+      <p>Linux learning exercises and terminal practice.</p>
       <span class="chip">LINUX</span>
     </div>
 
     <div class="card">
       <div class="icon">02</div>
       <h3>NETWORK STUDY</h3>
-      <p>My notes and practical learning about networking fundamentals.</p>
+      <p>Networking fundamentals and study documentation.</p>
       <span class="chip">NETWORKING</span>
     </div>
 
     <div class="card">
       <div class="icon">03</div>
       <h3>CTF LEARNING</h3>
-      <p>Lessons and documentation from authorised cybersecurity challenges.</p>
+      <p>Lessons from authorised cybersecurity challenges.</p>
       <span class="chip">CTF</span>
     </div>
 
   </div>
-
-  <p style="color:var(--muted);margin-top:20px">
-    These are learning-project descriptions. Replace them with your
-    completed projects as your experience grows.
-  </p>
-
 </div>
 </section>
 
@@ -684,68 +622,63 @@ footer {
   <div class="grid">
 
     <div class="card">
-
       <img
         class="certificate-image"
         src="certificates/bcs-ctf-2026.jpg"
-        alt="BCS CTF 2026 Certificate"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+        alt="BCS CTF Certificate"
+        data-fallback="bcs-ctf-2026.jpg"
+        onerror="tryNextCertificate(this)"
         onclick="openCertificate(this.src)"
       >
 
       <div class="missing-image">
-        Upload certificates/bcs-ctf-2026.jpg
+        BCS CTF IMAGE NOT FOUND.<br>
+        Check the uploaded filename.
       </div>
 
       <h3>BCS CTF 2026</h3>
-      <p>Bangladesh Computer Society — Participation certificate.</p>
-
+      <p>Bangladesh Computer Society — Participation.</p>
     </div>
 
     <div class="card">
-
       <img
         class="certificate-image"
         src="certificates/hackviser-core.jpg"
         alt="Hackviser CORE Certificate"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+        data-fallback="hackviser-core.jpg"
+        onerror="tryNextCertificate(this)"
         onclick="openCertificate(this.src)"
       >
 
       <div class="missing-image">
-        Upload certificates/hackviser-core.jpg
+        HACKVISER IMAGE NOT FOUND.<br>
+        Check the uploaded filename.
       </div>
 
       <h3>HACKVISER CORE</h3>
-      <p>Cybersecurity Foundations certificate.</p>
-
+      <p>Cybersecurity Foundations.</p>
     </div>
 
     <div class="card">
-
       <img
         class="certificate-image"
         src="certificates/10-minute-school.jpg"
         alt="10 Minute School Certificate"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+        data-fallback="10-minute-school.jpg"
+        onerror="tryNextCertificate(this)"
         onclick="openCertificate(this.src)"
       >
 
       <div class="missing-image">
-        Upload certificates/10-minute-school.jpg
+        10 MINUTE SCHOOL IMAGE NOT FOUND.<br>
+        Check the uploaded filename.
       </div>
 
       <h3>10 MINUTE SCHOOL</h3>
-      <p>Bengali Debate — Course completion certificate.</p>
-
+      <p>Bengali Debate — Course completion.</p>
     </div>
 
   </div>
-
-  <p style="color:var(--muted);margin-top:20px">
-    Click any uploaded certificate to enlarge it.
-  </p>
-
 </div>
 </section>
 
@@ -762,19 +695,15 @@ footer {
     <div class="panel">
       <h3 class="cyan">LET'S CONNECT.</h3>
       <br>
-
       <p>
-        Interested in technology, cybersecurity and learning?
-        You can reach me through my email address.
+        Have an opportunity, project idea or cybersecurity question?
+        Send me an email.
       </p>
-
       <br>
 
-      <a
-        href="mailto:adetolaadegoke59@gmail.com?subject=Hello%20ALIXEN&body=Hello%20Adgeoke,"
-        class="btn primary"
-      >
-        SEND EMAIL ↗
+      <a class="btn primary"
+         href="mailto:adetolaadegoke59@gmail.com?subject=Hello%20ALIXEN&body=Hello%20Adgeoke,">
+         SEND EMAIL ↗
       </a>
     </div>
 
@@ -786,10 +715,10 @@ footer {
       </a>
 
       <a class="contact-link"
-         href="https://github.com/"
+         href="https://github.com/adetolaadegoke"
          target="_blank"
          rel="noopener">
-         ◈ MY GITHUB
+         ◈ GITHUB PROFILE ↗
       </a>
 
     </div>
@@ -801,45 +730,39 @@ footer {
 </main>
 
 <footer>
-  <p>© <span id="year"></span> ALIXEN</p>
+  © <span id="year"></span> ALIXEN
   <p style="margin-top:8px">
     ADGEOKE AL-HASSAN ADETOLA · LEARN. BUILD. PROTECT.
   </p>
 </footer>
 
-<!-- CERTIFICATE VIEWER -->
+<!-- CERTIFICATE MODAL -->
 
 <div class="modal" id="certificateModal"
      onclick="closeCertificate()">
 
-  <button class="modal-close"
-          aria-label="Close certificate">&times;</button>
+  <button class="close" aria-label="Close">&times;</button>
 
-  <img id="certificatePreview"
-       src=""
-       alt="Enlarged certificate">
+  <img id="certificatePreview" src="" alt="Certificate preview">
 
 </div>
 
 <script>
 
-/* FOOTER YEAR */
+/* YEAR */
 
 document.getElementById("year").textContent =
   new Date().getFullYear();
 
 /* MOBILE MENU */
 
-const menuButton = document.getElementById("menuButton");
-const navLinks = document.getElementById("navLinks");
-
-menuButton.addEventListener("click", () => {
-  navLinks.classList.toggle("show");
+document.getElementById("menuButton").addEventListener("click", () => {
+  document.getElementById("navLinks").classList.toggle("show");
 });
 
 document.querySelectorAll("#navLinks a").forEach(link => {
   link.addEventListener("click", () => {
-    navLinks.classList.remove("show");
+    document.getElementById("navLinks").classList.remove("show");
   });
 });
 
@@ -850,82 +773,113 @@ const phrases = [
   "ETHICAL HACKING LEARNER",
   "NETWORKING EXPLORER",
   "DIGITAL DEFENCE BUILDER",
-  "FUTURE CYBERSECURITY PROFESSIONAL"
+  "FUTURE SECURITY PROFESSIONAL"
 ];
 
 let phraseIndex = 0;
-let characterIndex = 0;
+let charIndex = 0;
 let deleting = false;
 
-const typingElement = document.getElementById("typing");
+function typingEffect() {
 
-function typeEffect() {
-
-  const phrase = phrases[phraseIndex];
+  const current = phrases[phraseIndex];
+  const element = document.getElementById("typingText");
 
   if (!deleting) {
-    typingElement.textContent =
-      phrase.substring(0, characterIndex + 1);
 
-    characterIndex++;
+    element.textContent = current.substring(0,charIndex + 1);
+    charIndex++;
 
-    if (characterIndex === phrase.length) {
+    if (charIndex === current.length) {
       deleting = true;
-      setTimeout(typeEffect, 1500);
+      setTimeout(typingEffect,1400);
       return;
     }
 
   } else {
 
-    typingElement.textContent =
-      phrase.substring(0, characterIndex - 1);
+    element.textContent = current.substring(0,charIndex - 1);
+    charIndex--;
 
-    characterIndex--;
-
-    if (characterIndex === 0) {
+    if (charIndex === 0) {
       deleting = false;
       phraseIndex = (phraseIndex + 1) % phrases.length;
     }
+
   }
 
-  setTimeout(typeEffect, deleting ? 35 : 75);
+  setTimeout(typingEffect,deleting ? 35 : 75);
 }
 
-typeEffect();
+typingEffect();
 
-/* CERTIFICATE PREVIEW */
+/* CERTIFICATE IMAGE FALLBACK */
 
-function openCertificate(imageSource) {
+function tryNextCertificate(img) {
+
+  const filename = img.dataset.fallback;
+
+  if (img.dataset.triedRoot !== "yes") {
+
+    img.dataset.triedRoot = "yes";
+
+    img.src = filename;
+
+    return;
+  }
+
+  img.style.display = "none";
+
+  const placeholder = img.nextElementSibling;
+
+  if (placeholder) {
+    placeholder.style.display = "flex";
+  }
+}
+
+/* CERTIFICATE MODAL */
+
+function openCertificate(src) {
+
   const modal = document.getElementById("certificateModal");
-  document.getElementById("certificatePreview").src = imageSource;
+
+  document.getElementById("certificatePreview").src = src;
+
   modal.classList.add("open");
 }
 
 function closeCertificate() {
+
   document.getElementById("certificateModal").classList.remove("open");
 }
 
 document.getElementById("certificatePreview")
-  .addEventListener("click", event => event.stopPropagation());
+.addEventListener("click", event => event.stopPropagation());
 
 document.addEventListener("keydown", event => {
-  if (event.key === "Escape") closeCertificate();
+
+  if (event.key === "Escape") {
+    closeCertificate();
+  }
+
 });
 
-/* 3D ANIMATED GLOBE */
+/* 3D GLOBE */
 
-const globeElement = document.getElementById("globe");
+const globeContainer = document.getElementById("globe");
 const globeFallback = document.getElementById("globeFallback");
 
-if (typeof Globe === "undefined") {
+function createGlobe() {
 
-  globeFallback.style.display = "flex";
-
-} else {
+  if (typeof Globe === "undefined") {
+    globeFallback.style.display = "flex";
+    globeFallback.textContent = "GLOBE LIBRARY UNAVAILABLE";
+    return;
+  }
 
   try {
 
-    const globe = Globe()(globeElement)
+    const globe = Globe()(globeContainer)
 
       .globeImageUrl(
         "https://unpkg.com/three-globe/example/img/earth-night.jpg"
@@ -935,40 +889,40 @@ if (typeof Globe === "undefined") {
 
       .showAtmosphere(true)
       .atmosphereColor("#00eaff")
-      .atmosphereAltitude(0.19)
+      .atmosphereAltitude(0.2)
 
       .showGraticules(true)
 
       .arcsData([
         {
-          startLat: 6.5244,
-          startLng: 3.3792,
-          endLat: 51.5072,
-          endLng: -0.1276
+          startLat:6.5244,
+          startLng:3.3792,
+          endLat:51.5072,
+          endLng:-0.1276
         },
         {
-          startLat: 6.5244,
-          startLng: 3.3792,
-          endLat: 40.7128,
-          endLng: -74.0060
+          startLat:6.5244,
+          startLng:3.3792,
+          endLat:40.7128,
+          endLng:-74.006
         },
         {
-          startLat: 6.5244,
-          startLng: 3.3792,
-          endLat: 35.6762,
-          endLng: 139.6503
+          startLat:6.5244,
+          startLng:3.3792,
+          endLat:35.6762,
+          endLng:139.6503
         },
         {
-          startLat: 51.5072,
-          startLng: -0.1276,
-          endLat: 35.6762,
-          endLng: 139.6503
+          startLat:51.5072,
+          startLng:-0.1276,
+          endLat:35.6762,
+          endLng:139.6503
         },
         {
-          startLat: 40.7128,
-          startLng: -74.0060,
-          endLat: -1.2921,
-          endLng: 36.8219
+          startLat:40.7128,
+          startLng:-74.006,
+          endLat:-1.2921,
+          endLng:36.8219
         }
       ])
 
@@ -980,44 +934,45 @@ if (typeof Globe === "undefined") {
       .arcDashAnimateTime(2500)
 
       .pointsData([
-        { lat: 6.5244, lng: 3.3792, size: 0.7 },
-        { lat: 51.5072, lng: -0.1276, size: 0.5 },
-        { lat: 40.7128, lng: -74.0060, size: 0.5 },
-        { lat: 35.6762, lng: 139.6503, size: 0.5 },
-        { lat: -1.2921, lng: 36.8219, size: 0.5 }
+        {lat:6.5244,lng:3.3792},
+        {lat:51.5072,lng:-0.1276},
+        {lat:40.7128,lng:-74.006},
+        {lat:35.6762,lng:139.6503},
+        {lat:-1.2921,lng:36.8219}
       ])
 
       .pointColor(() => "#00eaff")
-      .pointAltitude(0.02)
-      .pointRadius("size")
+      .pointAltitude(0.025)
+      .pointRadius(0.5)
 
-      .width(globeElement.clientWidth)
-      .height(globeElement.clientHeight);
+      .width(globeContainer.clientWidth)
+      .height(globeContainer.clientHeight);
 
     globe.controls().autoRotate = true;
-    globe.controls().autoRotateSpeed = 0.45;
+    globe.controls().autoRotateSpeed = 0.5;
     globe.controls().enableZoom = true;
 
     globe.pointOfView({
-      lat: 20,
-      lng: 15,
-      altitude: 2.1
-    }, 1000);
+      lat:15,
+      lng:15,
+      altitude:2.1
+    },1000);
 
     window.addEventListener("resize", () => {
-      globe.width(globeElement.clientWidth);
-      globe.height(globeElement.clientHeight);
+      globe.width(globeContainer.clientWidth);
+      globe.height(globeContainer.clientHeight);
     });
 
-  } catch (error) {
+  } catch(error) {
 
     globeFallback.style.display = "flex";
-    globeFallback.textContent =
-      "3D GLOBE UNAVAILABLE — CHECK INTERNET CONNECTION";
+    globeFallback.textContent = "GLOBE COULD NOT LOAD";
 
+    console.error("Globe error:",error);
   }
-
 }
+
+createGlobe();
 
 </script>
 
